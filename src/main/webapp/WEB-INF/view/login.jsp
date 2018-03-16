@@ -18,6 +18,7 @@
 <head>
  <title>Login</title>
  <link rel="stylesheet" href="/css/main.css">
+ <!-- deals with style  -->
  <style>
    label {
      display: inline-block;
@@ -48,6 +49,7 @@
    <form action="/login" method="POST">
      <label for="username">Username: </label>
      <input type="text" name="username" id="username">
+     <!-- new line and set form for password - doesn't do anything rn -->
      <br/>
      <label for="password">Password: </label>
      <input type="password" name="password" id="password">
