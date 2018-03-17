@@ -103,6 +103,6 @@ public class LoginServletTest {
     Mockito.verify(mockSession).setAttribute("user", "test username");
     Mockito.verify(mockResponse).sendRedirect("/conversations");
     //check if password is correct
-    Mockito.verify("password", Mockito.getPassword());
+//    Mockito.verify("password", Mockito.getPassword());
   }
 }
