@@ -1,10 +1,18 @@
-package codeu.controller; codeu.model.store.basic;
+package codeu.controller; 
 
 import java.io.IOException;
+import java.time.Instant;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.mindrot.jbcrypt.BCrypt;
+
+import codeu.model.data.User;
+import codeu.model.store.basic.UserStore;
 /**
 * Servlet class responsible for user registration.
 */
@@ -26,8 +34,9 @@ public class RegisterServlet extends HttpServlet {
  public void doPost(HttpServletRequest request, HttpServletResponse response)
      throws IOException, ServletException {
 
-   String username = request.getParameter("username");
-   String password = request.getParameter("password");
+     String username = request.getParameter("username");
+     String password = request.getParameter("password");
+     String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
    //alphanumeric check
    if (!username.matches("[\\w*\\s*]*")) {
@@ -42,7 +51,7 @@ public class RegisterServlet extends HttpServlet {
      return;
    }
 
-   User user = new User(UUID.randomUUID(), username, password, Instant.now());
+   User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
    userStore.addUser(user);
 
    response.sendRedirect("/login");
@@ -50,7 +59,7 @@ public class RegisterServlet extends HttpServlet {
    // response.getWriter().println("<p>Username: " + username + "</p>");
    // response.getWriter().println("<p>Password: " + password + "</p>");
  }
- 
+
  /**
   * Set up state for handling registration-related requests. This method is only called when
   * running in a server, not when running in a test.
@@ -61,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
    super.init();
    setUserStore(UserStore.getInstance());
  }
- 
+
  /**
   * Sets the UserStore used by this servlet. This function provides a common setup method
   * for use by the test framework or the servlet's init() function.
@@ -71,4 +80,3 @@ public class RegisterServlet extends HttpServlet {
  }
 
 }
-
