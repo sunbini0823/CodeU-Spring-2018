@@ -83,16 +83,17 @@
 
   <div class="container-fluid">
 
-  <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
-  </nav>
+    <nav>
+     <a id="navTitle" href="/">CodeU Chat App</a>
+     <a href="/conversations">Conversations</a>
+     <% if(request.getSession().getAttribute("user") != null){ %>
+       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+     <% } else{ %>
+       <a href="/login">Login</a>
+       <a href="/register">Register</a>
+     <% } %>
+     <a href="/about.jsp">About</a>
+   </nav>
 
     <div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
       <h2 style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</h2>
