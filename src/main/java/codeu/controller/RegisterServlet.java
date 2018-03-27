@@ -1,15 +1,24 @@
 package codeu.controller;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.util.UUID;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.mindrot.jbcrypt.BCrypt;
+
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
-import java.time.Instant;
-import java.util.UUID;
+
+
+import javax.swing.JOptionPane;
+//import javafx.scene.control.Alert;
+//import javafx.scene.control.Alert.AlertType;
+//import javafx.application.Platform;
 
 /**
  * Servlet class responsible for user registration.
@@ -39,7 +48,7 @@ public class RegisterServlet extends HttpServlet {
         this.userStore = userStore;
     }
     
-    /** doPost makes a POST request to the /register URL when user clicks submit button*/
+    /** doGET forwards the request with response*/
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException {
@@ -47,12 +56,14 @@ public class RegisterServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
     }
     
+    /** doPost makes a POST request to the /register URL when user clicks submit button*/
     @Override
     public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException {
         
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
         
         //alphanumeric check
         if (!username.matches("[\\w*\\s*]*")) {
@@ -67,9 +78,20 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         
-        User user = new User(UUID.randomUUID(), username, password, Instant.now());
+        User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
         userStore.addUser(user);
         
+        /*Show alert message to users that they will be redirected to login page*/
+//        JOptionPane.showMessageDialog(null, "testing popup message");
+//        showAlert("Redirecting to Login Page", "Alert Message", null);
         response.sendRedirect("/login");
     }
+    
+//    public void showAlert(String infoMessage, String titleBar, String headerMessage){
+//        Alert alert = new Alert(AlertType.INFORMATION);
+//        alert.setTitle(titleBar);
+//        alert.setHeaderText(headerMessage);
+//        alert.setContentText(infoMessage);
+//        alert.showAndWait();
+//    }
 }
