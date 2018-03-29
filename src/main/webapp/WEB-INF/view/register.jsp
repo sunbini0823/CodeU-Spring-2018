@@ -37,7 +37,8 @@
      <input type="text" name="username" id="username">
 	 <br/>
      <label for="email">Email: </label>
-     <input type="email" name="email" id="email">
+	 <!-- had to change this type, email type wasn't letting to override the default email validation -->
+     <input type="mail" name="email" id="email">
      <br/>
      <label for="password">Password: </label>
      <input type="password" name="password" id="password">

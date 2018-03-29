@@ -15,8 +15,8 @@ import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 
 //for email validation
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
 * Servlet class responsible for user registration.
@@ -62,14 +62,13 @@ public class RegisterServlet extends HttpServlet {
      request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
      return;
    }
-   /* this is for email validation, but not done yet
-	// if invalid email syntax 
-   boolean tempbool = isValidEmail(emaill);
-   if (!tempbool) {
+   
+   // if invalid email 
+   if (!isValid(email)) {
 	 request.setAttribute("error", "Invalid email address.");
      request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
      return;
-   } */	 
+   }  
    
    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
    userStore.addUser(user);
@@ -77,13 +76,21 @@ public class RegisterServlet extends HttpServlet {
    response.sendRedirect("/login");
 
  } 
- /* not working yet, still working on it
- public static boolean isValidEmail(String enteredEmail){
-   String EMAIL_REGIX = "^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$";
-   Pattern pattern = Pattern.compile(EMAIL_REGIX);
-   Matcher matcher = pattern.matcher(enteredEmail);
-   return ((!enteredEmail.isEmpty()) && (enteredEmail!=null) && (matcher.matches()));
- } */
+ // email validation 
+public static boolean isValid(String email)
+    {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+
+                            "[a-zA-Z0-9_+&*-]+)*@" +
+                            "(?:[a-zA-Z0-9-]+\\.)+[a-z" +
+                            "A-Z]{2,7}$";
+                             
+        Pattern pat = Pattern.compile(emailRegex);
+        if (email == null)
+            return false;
+        return pat.matcher(email).matches();
+    }
+ 
+
 
  /**
   * Set up state for handling registration-related requests. This method is only called when
