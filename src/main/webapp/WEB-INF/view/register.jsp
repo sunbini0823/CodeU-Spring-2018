@@ -25,7 +25,7 @@
      <a href="/about.jsp">About</a>
  </nav>
 
- <div id="container">
+ <div id="container" align="center">
    <h1>Register</h1>
 
    <% if(request.getAttribute("error") != null){ %>
@@ -35,6 +35,9 @@
    <form action="/register" method="POST">
      <label for="username">Username: </label>
      <input type="text" name="username" id="username">
+	 <br/>
+     <label for="email">Email: </label>
+     <input type="email" name="email" id="email">
      <br/>
      <label for="password">Password: </label>
      <input type="password" name="password" id="password">

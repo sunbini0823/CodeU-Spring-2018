@@ -41,7 +41,7 @@
    <a href="/about.jsp">About</a>
  </nav>
 
- <div id="container">
+ <div id="container" align="center"">
    <h1>Login</h1>
 
    <% if(request.getAttribute("error") != null){ %>

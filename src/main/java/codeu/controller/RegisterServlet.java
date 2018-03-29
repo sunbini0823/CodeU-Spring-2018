@@ -13,6 +13,11 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
+
+//for email validation
+//import java.util.regex.Matcher;
+//import java.util.regex.Pattern;
+
 /**
 * Servlet class responsible for user registration.
 */
@@ -35,30 +40,50 @@ public class RegisterServlet extends HttpServlet {
      throws IOException, ServletException {
 
      String username = request.getParameter("username");
-     String password = request.getParameter("password");
+     String email = request.getParameter("email");     
+	 String password = request.getParameter("password");
      String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
 
    //alphanumeric check
    if (!username.matches("[\\w*\\s*]*")) {
-   		request.setAttribute("error", "Please enter only letters, numbers, and spaces.");
+   		request.setAttribute("error", "Invalid username. Please enter only letters, numbers, and spaces.");
      	request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
      	return;
    }
-
+	// if username is empty
+   if (username.matches("")){
+	   request.setAttribute("error", "Invalid username. Please enter letters/numbers/spaces.");
+	   request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+	   return;
+   }
+   // if username already exists
    if (userStore.isUserRegistered(username)) {
      request.setAttribute("error", "That username is already taken.");
      request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
      return;
    }
-
+   /* this is for email validation, but not done yet
+	// if invalid email syntax 
+   boolean tempbool = isValidEmail(emaill);
+   if (!tempbool) {
+	 request.setAttribute("error", "Invalid email address.");
+     request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+     return;
+   } */	 
+   
    User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
    userStore.addUser(user);
 
    response.sendRedirect("/login");
 
-   // response.getWriter().println("<p>Username: " + username + "</p>");
-   // response.getWriter().println("<p>Password: " + password + "</p>");
- }
+ } 
+ /* not working yet, still working on it
+ public static boolean isValidEmail(String enteredEmail){
+   String EMAIL_REGIX = "^[\\\\w!#$%&’*+/=?`{|}~^-]+(?:\\\\.[\\\\w!#$%&’*+/=?`{|}~^-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,6}$";
+   Pattern pattern = Pattern.compile(EMAIL_REGIX);
+   Matcher matcher = pattern.matcher(enteredEmail);
+   return ((!enteredEmail.isEmpty()) && (enteredEmail!=null) && (matcher.matches()));
+ } */
 
  /**
   * Set up state for handling registration-related requests. This method is only called when
@@ -78,5 +103,5 @@ public class RegisterServlet extends HttpServlet {
  void setUserStore(UserStore userStore) {
    this.userStore = userStore;
  }
-
+ 
 }

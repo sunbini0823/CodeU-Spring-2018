@@ -26,13 +26,10 @@
  </nav>
 
  <div id="container">
-   <h1>My Profile</h1>
-
-   <% if(request.getAttribute("error") != null){ %>
-       <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-   <% } %>
-
-
+    <div>
+      <h1>My Profile</h1>
+	</div>
  </div>
+ 
 </body>
 </html>
