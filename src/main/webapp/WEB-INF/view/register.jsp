@@ -32,6 +32,10 @@
        <h2 style="color:red"><%= request.getAttribute("error") %></h2>
    <% } %>
 
+   <% if(request.getAttribute("notice") != null){ %>
+       <h2 style="color:purple"><%= request.getAttribute("notice") %></h2>
+   <% } %>
+
    <form action="/register" method="POST">
      <label for="username">Username: </label>
      <input type="text" name="username" id="username">
