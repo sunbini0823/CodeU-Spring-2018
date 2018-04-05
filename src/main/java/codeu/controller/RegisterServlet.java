@@ -19,7 +19,6 @@ import codeu.model.store.basic.UserStore;
  */
 public class RegisterServlet extends HttpServlet {
     
-    private boolean redirect = false;
     /**
      * Store class that gives access to Users.
      */
