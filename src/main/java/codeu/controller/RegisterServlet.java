@@ -14,17 +14,12 @@ import org.mindrot.jbcrypt.BCrypt;
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 
-
-import javax.swing.JOptionPane;
-//import javafx.scene.control.Alert;
-//import javafx.scene.control.Alert.AlertType;
-//import javafx.application.Platform;
-
 /**
  * Servlet class responsible for user registration.
  */
 public class RegisterServlet extends HttpServlet {
     
+    private boolean redirect = false;
     /**
      * Store class that gives access to Users.
      */
@@ -52,7 +47,6 @@ public class RegisterServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response)
     throws IOException, ServletException {
-        
         request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
     }
     
@@ -78,20 +72,14 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         
-        User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());
+        User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());   
         userStore.addUser(user);
         
         /*Show alert message to users that they will be redirected to login page*/
-//        JOptionPane.showMessageDialog(null, "testing popup message");
-//        showAlert("Redirecting to Login Page", "Alert Message", null);
-        response.sendRedirect("/login");
+        request.setAttribute("notice", "You can now login at the login page!!");
+        request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+        return;
     }
     
-//    public void showAlert(String infoMessage, String titleBar, String headerMessage){
-//        Alert alert = new Alert(AlertType.INFORMATION);
-//        alert.setTitle(titleBar);
-//        alert.setHeaderText(headerMessage);
-//        alert.setContentText(infoMessage);
-//        alert.showAndWait();
-//    }
+
 }
