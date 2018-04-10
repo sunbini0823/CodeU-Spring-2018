@@ -25,7 +25,7 @@
      <a href="/about.jsp">About</a>
  </nav>
 
- <div id="container">
+ <div id="container" align="center">
    <h1>Register</h1>
 
    <% if(request.getAttribute("error") != null){ %>
@@ -40,6 +40,10 @@
      <label for="username">Username: </label>
      <input type="text" name="username" id="username">
      <br/>
+	 <label for="email">Email: </label>
+	 <!-- had to change this type, email type wasn't letting to override the default email validation -->
+	 <input type="mail" name="email" id="email">
+     <br/>	 
      <label for="password">Password: </label>
      <input type="password" name="password" id="password">
      <br/><br/>
