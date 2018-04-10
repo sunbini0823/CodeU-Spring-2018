@@ -53,15 +53,15 @@ public class RegisterServletTest {
   
  @Test
  public void testDoPost_EmptyUsername() {
-	String testEmail = "user@.invalid.com";
-	String testEmail2 = "user@valid.com";
+    String testEmail = "user@.invalid.com";
+    String testEmail2 = "user@valid.com";
 
-	RegisterServlet emailTest = new RegisterServlet();
-	boolean result = emailTest.isValid(testEmail);
-	boolean result2 = emailTest.isValid(testEmail2);
+    RegisterServlet emailTest = new RegisterServlet();
+    boolean result = emailTest.isValid(testEmail);
+    boolean result2 = emailTest.isValid(testEmail2);
 
-	Assert.assertEquals(false, result);
-	Assert.assertEquals(true, result2);
+    Assert.assertEquals(false, result);
+    Assert.assertEquals(true, result2);
  }
   
 }
