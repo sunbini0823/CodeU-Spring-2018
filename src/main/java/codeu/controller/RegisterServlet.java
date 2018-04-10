@@ -14,6 +14,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 
+//for email validation
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * Servlet class responsible for user registration.
  */
@@ -55,6 +59,7 @@ public class RegisterServlet extends HttpServlet {
     throws IOException, ServletException {
         
         String username = request.getParameter("username");
+		String email = request.getParameter("email");     
         String password = request.getParameter("password");
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
         
@@ -64,13 +69,23 @@ public class RegisterServlet extends HttpServlet {
             request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
             return;
         }
-        
+        // if username is empty
+	    if (username.matches("")) {
+		    request.setAttribute("error", "Invalid username. Please enter letters/numbers/spaces.");
+		    request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+		    return;
+	    }
         if (userStore.isUserRegistered(username)) {
             request.setAttribute("error", "That username is already taken.");
             request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
             return;
         }
-        
+        if (!isValid(email)) {
+			request.setAttribute("error", "Invalid email address.");
+			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+			return;
+		}  
+		
         User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());   
         userStore.addUser(user);
         
@@ -80,5 +95,12 @@ public class RegisterServlet extends HttpServlet {
         return;
     }
     
-
+// email validation 
+    public static boolean isValid(String email) {
+		String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\."+ "[a-zA-Z0-9_+&*-]+)*@" + "(?:[a-zA-Z0-9-]+\\.)+[a-z" + "A-Z]{2,7}$";
+		Pattern pat = Pattern.compile(emailRegex);
+		if (email == null)
+			return false;
+		return pat.matcher(email).matches();
+	}
 }

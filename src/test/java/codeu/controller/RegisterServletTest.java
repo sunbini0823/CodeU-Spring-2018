@@ -1,4 +1,6 @@
 package codeu.controller;
+import codeu.model.data.User;
+import codeu.model.store.basic.UserStore;
 
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -8,6 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+
+import org.junit.Assert;
+import org.junit.Test;
 
 public class RegisterServletTest {
 
@@ -31,4 +36,32 @@ public class RegisterServletTest {
 
    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
  }
+ 
+ @Test
+ public void testDoPost_ExistingUser() throws IOException, ServletException {
+	Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
+	
+	UserStore mockUserStore = Mockito.mock(UserStore.class);
+    Mockito.when(mockUserStore.isUserRegistered("test username")).thenReturn(true);
+    registerServlet.setUserStore(mockUserStore);
+
+    registerServlet.doPost(mockRequest, mockResponse);
+
+    Mockito.verify(mockRequest).setAttribute("error", "That username is already taken.");
+    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+  }
+  
+ @Test
+ public void testDoPost_EmptyUsername() {
+	String testEmail = "user@.invalid.com";
+	String testEmail2 = "user@valid.com";
+
+	RegisterServlet emailTest = new RegisterServlet();
+	boolean result = emailTest.isValid(testEmail);
+	boolean result2 = emailTest.isValid(testEmail2);
+
+	Assert.assertEquals(false, result);
+	Assert.assertEquals(true, result2);
+ }
+  
 }
