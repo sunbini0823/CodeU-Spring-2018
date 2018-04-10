@@ -16,6 +16,7 @@ package codeu.model.store.basic;
 
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -112,6 +113,20 @@ public class UserStore {
       }
     }
     return false;
+  }
+
+  /** Access the users created within a day. */
+  public List<User> getRecentUsers() {
+    List<User> recentUsers = new ArrayList<>();
+
+    Instant aDayBefore = Instant.now().minusSeconds(86400);
+
+    for (User user : users) {
+      if (user.getCreationTime().isAfter(aDayBefore)) {
+        recentUsers.add(user);
+      }
+    }
+    return recentUsers;
   }
 
   /**

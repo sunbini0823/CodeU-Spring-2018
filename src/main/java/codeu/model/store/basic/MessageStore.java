@@ -16,9 +16,11 @@ package codeu.model.store.basic;
 
 import codeu.model.data.Message;
 import codeu.model.store.persistence.PersistentStorageAgent;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -100,6 +102,20 @@ public class MessageStore {
     }
 
     return messagesInConversation;
+  }
+
+  /** Access the messages created within a day. */
+  public List<Message> getRecentMessages() {
+    List<Message> recentMessages = new ArrayList<>();
+
+    Instant aDayBefore = Instant.now().minusSeconds(86400);
+
+    for (Message message : messages) {
+      if(message.getCreationTime().isAfter(aDayBefore)){
+        recentMessages.add(message);
+      }
+    }
+    return recentMessages;
   }
 
   /** Sets the List of Messages stored by this MessageStore. */

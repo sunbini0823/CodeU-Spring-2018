@@ -14,10 +14,13 @@
 
 package codeu.model.store.basic;
 
-import codeu.model.data.Conversation;
-import codeu.model.store.persistence.PersistentStorageAgent;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import codeu.model.data.Conversation;
+import codeu.model.store.persistence.PersistentStorageAgent;
 
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
@@ -111,6 +114,34 @@ public class ConversationStore {
       }
     }
     return null;
+  }
+
+  /**
+   * Access the Conversation object with the given UUID.
+   *
+   * @return null if the UUID does not match any existing Conversation.
+   */
+  public Conversation getConversation(UUID id) {
+    for (Conversation conversation : conversations) {
+      if (conversation.getId().equals(id)) {
+        return conversation;
+      }
+    }
+    return null;
+  }
+
+  /** Access the conversations created within a day. */
+  public List<Conversation> getRecentConversations() {
+    List<Conversation> recentConversations = new ArrayList<>();
+
+    Instant aDayBefore = Instant.now().minusSeconds(86400);
+
+    for (Conversation conversation : conversations) {
+      if(conversation.getCreationTime().isAfter(aDayBefore)){
+        recentConversations.add(conversation);
+      }
+    }
+    return recentConversations;
   }
 
   /** Sets the List of Conversations stored by this ConversationStore. */
