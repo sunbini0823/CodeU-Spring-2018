@@ -17,10 +17,10 @@
    <a href="/conversations">Conversations</a>
    <% if(request.getSession().getAttribute("user") != null){ %>
      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	 <a href="/myprofile">My Profile</a>
+     <a href="/myprofile">My Profile</a>
    <% } else{ %>
      <a href="/login">Login</a>
-	 <a href="/register">Register</a>
+     <a href="/register">Register</a>
    <% } %>
      <a href="/about.jsp">About</a>
  </nav>
@@ -40,9 +40,8 @@
      <label for="username">Username: </label>
      <input type="text" name="username" id="username">
      <br/>
-	 <label for="email">Email: </label>
-	 <!-- had to change this type, email type wasn't letting to override the default email validation -->
-	 <input type="mail" name="email" id="email">
+     <label for="email">Email: </label>
+     <input type="text" name="email" id="email">
      <br/>	 
      <label for="password">Password: </label>
      <input type="password" name="password" id="password">
