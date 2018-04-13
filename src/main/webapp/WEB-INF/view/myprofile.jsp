@@ -48,9 +48,9 @@
 		</div>
 		<div class="column65" align="center"> 
 			<h1>Name and other info here</h1>
+      <button type= "submit"> Message (name)</button>
 		</div>
 	</div>
- 
  </div>
 </body>
 </html>
