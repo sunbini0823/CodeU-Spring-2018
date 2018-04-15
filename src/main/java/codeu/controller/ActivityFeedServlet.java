@@ -90,43 +90,43 @@ public class ActivityFeedServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response)
       throws IOException, ServletException {
 
-    List<String> conversationactivity = new ArrayList<String>();
-    List<Conversation> conversationlist = conversationStore.getRecentConversations();
+    List<String> conversationActivity = new ArrayList<String>();
+    List<Conversation> conversationList = conversationStore.getRecentConversations();
 
-    for (Conversation conversation : conversationlist) {
+    for (Conversation conversation : conversationList) {
       LocalDateTime datetime = LocalDateTime.ofInstant(conversation.getCreationTime(), ZoneId.of("America/Los_Angeles"));
       String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
       User creator = userStore.getUser(conversation.getOwnerId());
-      conversationactivity.add(time + creator.getName() + " created a new conversation: " + conversation.getTitle());
+      conversationActivity.add(time + creator.getName() + " created a new conversation: " + conversation.getTitle());
     }
 
-    List<String> messageactivity = new ArrayList<String>();
-    List<Message> messagelist = messageStore.getRecentMessages();
+    List<String> messageActivity = new ArrayList<String>();
+    List<Message> messageList = messageStore.getRecentMessages();
 
-    for (Message message : messagelist) {
+    for (Message message : messageList) {
       LocalDateTime datetime = LocalDateTime.ofInstant(message.getCreationTime(), ZoneId.of("America/Los_Angeles"));
       String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
       User creator = userStore.getUser(message.getAuthorId());
-      Conversation conversation = conversationStore.getConversation(message.getConversationId());
+      Conversation conversation = conversationStore.getConversationWithUUID(message.getConversationId());
 
-      messageactivity.add(time + creator.getName() + " sent a message in " + conversation.getTitle() + ": \"" + message.getContent() + "\"");
+      messageActivity.add(time + creator.getName() + " sent a message in " + conversation.getTitle() + ": \"" + message.getContent() + "\"");
     }
 
-    List<String> useractivity = new ArrayList<String>();
-    List<User> userlist = userStore.getRecentUsers();
+    List<String> userActivity = new ArrayList<String>();
+    List<User> userList = userStore.getRecentUsers();
 
-    for (User user : userlist) {
+    for (User user : userList) {
       LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
       String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
-      useractivity.add(time + user.getName() + " joined!");
+      userActivity.add(time + user.getName() + " joined!");
     }
 
-    request.setAttribute("conversationactivity", conversationactivity);
-    request.setAttribute("messageactivity", messageactivity);
-    request.setAttribute("useractivity", useractivity);
+    request.setAttribute("conversationActivity", conversationActivity);
+    request.setAttribute("messageActivity", messageActivity);
+    request.setAttribute("userActivity", userActivity);
     request.getRequestDispatcher("/WEB-INF/view/activityfeed.jsp").forward(request, response);
   }
 

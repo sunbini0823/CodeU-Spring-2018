@@ -46,6 +46,21 @@ public class ConversationStoreTest {
   }
 
   @Test
+  public void testGetConversationWithUUID_found() {
+    Conversation resultConversation =
+        conversationStore.getConversationWithUUID(CONVERSATION_ONE.getId());
+
+    assertEquals(CONVERSATION_ONE, resultConversation);
+  }
+
+  @Test
+  public void testGetConversationWithUUID_notFound() {
+    Conversation resultConversation = conversationStore.getConversationWithUUID(UUID.randomUUID());
+
+    Assert.assertNull(resultConversation);
+  }
+
+  @Test
   public void testIsTitleTaken_true() {
     boolean isTitleTaken = conversationStore.isTitleTaken(CONVERSATION_ONE.getTitle());
 
@@ -57,6 +72,19 @@ public class ConversationStoreTest {
     boolean isTitleTaken = conversationStore.isTitleTaken("unfound_title");
 
     Assert.assertFalse(isTitleTaken);
+  }
+
+  @Test
+  public void testGetRecentConversations() {
+	Conversation inputConversation =
+	        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_recent", Instant.now());
+	
+	conversationStore.addConversation(inputConversation);
+	
+    List<Conversation> resultConversations =
+        conversationStore.getRecentConversations();
+
+    assertEquals(inputConversation, resultConversations.get(0));
   }
 
   @Test
@@ -79,4 +107,6 @@ public class ConversationStoreTest {
     Assert.assertEquals(
         expectedConversation.getCreationTime(), actualConversation.getCreationTime());
   }
+
+
 }

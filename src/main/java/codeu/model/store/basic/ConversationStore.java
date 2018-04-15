@@ -121,7 +121,7 @@ public class ConversationStore {
    *
    * @return null if the UUID does not match any existing Conversation.
    */
-  public Conversation getConversation(UUID id) {
+  public Conversation getConversationWithUUID(UUID id) {
     for (Conversation conversation : conversations) {
       if (conversation.getId().equals(id)) {
         return conversation;
@@ -133,11 +133,12 @@ public class ConversationStore {
   /** Access the conversations created within a day. */
   public List<Conversation> getRecentConversations() {
     List<Conversation> recentConversations = new ArrayList<>();
+    final int SECONDS_IN_DAY = 86400;
 
-    Instant aDayBefore = Instant.now().minusSeconds(86400);
+    Instant oneDayAgo = Instant.now().minusSeconds(SECONDS_IN_DAY);
 
     for (Conversation conversation : conversations) {
-      if(conversation.getCreationTime().isAfter(aDayBefore)){
+      if (conversation.getCreationTime().isAfter(oneDayAgo)) {
         recentConversations.add(conversation);
       }
     }

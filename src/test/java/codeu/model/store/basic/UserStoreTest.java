@@ -1,5 +1,6 @@
 package codeu.model.store.basic;
 
+import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.time.Instant;
@@ -61,6 +62,19 @@ public class UserStoreTest {
     User resultUser = userStore.getUser(UUID.randomUUID());
 
     Assert.assertNull(resultUser);
+  }
+  
+  @Test
+  public void testGetRecentUsers() {
+	User inputUser =
+			new User(UUID.randomUUID(), "test_username", "password", Instant.now());
+	
+	userStore.addUser(inputUser);
+	
+    List<User> resultUsers =
+        userStore.getRecentUsers();
+
+    assertEquals(inputUser, resultUsers.get(0));
   }
 
   @Test

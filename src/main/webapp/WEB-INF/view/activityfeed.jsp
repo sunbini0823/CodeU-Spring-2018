@@ -1,12 +1,9 @@
 <%--
   Copyright 2017 Google Inc.
-
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
   You may obtain a copy of the License at
-
      http://www.apache.org/licenses/LICENSE-2.0
-
   Unless required by applicable law or agreed to in writing, software
   distributed under the License is distributed on an "AS IS" BASIS,
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -41,43 +38,43 @@
 
     <h1>Activity Feed</h1>
 	<hr/>
-	
+
 	<h3>Conversation Activity</h3>
     <%
-    List<String> conversationactivity = (List<String>) request.getAttribute("conversationactivity");
+    List<String> conversationActivity = (List<String>) request.getAttribute("conversationActivity");
 	%>
       <ul class="mdl-list">
     <%
-      for(String ca : conversationactivity){
+      for(String ca : conversationActivity){
     %>
       <li><%=ca %></li>
     <%
       }
     %>
       </ul>
-      
-      
+
+
     <h3>Message Activity</h3>
     <%
-    List<String> messageactivity = (List<String>) request.getAttribute("messageactivity");
+    List<String> messageActivity = (List<String>) request.getAttribute("messageActivity");
 	%>
       <ul class="mdl-list">
     <%
-      for(String ma : messageactivity){
+      for(String ma : messageActivity){
     %>
       <li><%=ma %></li>
     <%
       }
     %>
       </ul>
-      
+
     <h3>User Activity</h3>
     <%
-    List<String> useractivity = (List<String>) request.getAttribute("useractivity");
+    List<String> userActivity = (List<String>) request.getAttribute("userActivity");
 	%>
       <ul class="mdl-list">
     <%
-      for(String ua : useractivity){
+      for(String ua : userActivity){
     %>
       <li><%=ua %></li>
     <%
@@ -85,7 +82,7 @@
     %>
       </ul>
 
-    
+
   </div>
 </body>
 </html>

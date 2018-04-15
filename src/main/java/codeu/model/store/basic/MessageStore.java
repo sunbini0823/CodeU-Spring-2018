@@ -107,11 +107,12 @@ public class MessageStore {
   /** Access the messages created within a day. */
   public List<Message> getRecentMessages() {
     List<Message> recentMessages = new ArrayList<>();
+    final int SECONDS_IN_DAY = 86400;
 
-    Instant aDayBefore = Instant.now().minusSeconds(86400);
+    Instant oneDayAgo = Instant.now().minusSeconds(SECONDS_IN_DAY);
 
     for (Message message : messages) {
-      if(message.getCreationTime().isAfter(aDayBefore)){
+      if (message.getCreationTime().isAfter(oneDayAgo)) {
         recentMessages.add(message);
       }
     }

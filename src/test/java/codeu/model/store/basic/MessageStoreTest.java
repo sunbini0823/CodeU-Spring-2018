@@ -1,5 +1,6 @@
 package codeu.model.store.basic;
 
+import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.time.Instant;
@@ -59,6 +60,19 @@ public class MessageStoreTest {
     Assert.assertEquals(2, resultMessages.size());
     assertEquals(MESSAGE_ONE, resultMessages.get(0));
     assertEquals(MESSAGE_TWO, resultMessages.get(1));
+  }
+  
+  @Test
+  public void testGetRecentMessages() {
+	Message inputMessage =
+	        new Message(UUID.randomUUID(), CONVERSATION_ID_ONE, UUID.randomUUID(), "recent_message", Instant.now());
+	
+	messageStore.addMessage(inputMessage);
+	
+    List<Message> resultMessages =
+        messageStore.getRecentMessages();
+
+    assertEquals(inputMessage, resultMessages.get(0));
   }
 
   @Test

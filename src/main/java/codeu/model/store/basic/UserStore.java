@@ -119,10 +119,12 @@ public class UserStore {
   public List<User> getRecentUsers() {
     List<User> recentUsers = new ArrayList<>();
 
-    Instant aDayBefore = Instant.now().minusSeconds(86400);
+    final int SECONDS_IN_DAY = 86400;
+
+    Instant oneDayAgo = Instant.now().minusSeconds(SECONDS_IN_DAY);
 
     for (User user : users) {
-      if (user.getCreationTime().isAfter(aDayBefore)) {
+      if (user.getCreationTime().isAfter(oneDayAgo)) {
         recentUsers.add(user);
       }
     }
