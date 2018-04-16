@@ -42,13 +42,15 @@ public class PersistentDataStoreTest {
     String nameOne = "test_username_one";
     String passwordOne = "password_one";
     Instant creationOne = Instant.ofEpochMilli(1000);
-    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne);
+	String photo_urlOne = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
+    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, photo_urlOne);
 
     UUID idTwo = UUID.randomUUID();
     String nameTwo = "test_username_two";
     String passwordTwo = "password_two";
     Instant creationTwo = Instant.ofEpochMilli(2000);
-    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo);
+	String photo_urlTwo = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
+    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, photo_urlTwo);
 
     // save
     persistentDataStore.writeThrough(inputUserOne);
@@ -63,12 +65,16 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(nameOne, resultUserOne.getName());
     Assert.assertEquals(passwordOne, resultUserOne.getPassword());
     Assert.assertEquals(creationOne, resultUserOne.getCreationTime());
+	Assert.assertEquals(photo_urlOne, resultUserOne.getPhotoURL());
+
 
     User resultUserTwo = resultUsers.get(1);
     Assert.assertEquals(idTwo, resultUserTwo.getId());
     Assert.assertEquals(nameTwo, resultUserTwo.getName());
     Assert.assertEquals(passwordTwo, resultUserTwo.getPassword());
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
+	Assert.assertEquals(photo_urlTwo, resultUserTwo.getPhotoURL());
+
   }
 
   @Test
