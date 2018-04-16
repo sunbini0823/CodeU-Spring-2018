@@ -38,7 +38,7 @@ public class User {
     this.name = name;
     this.password = password;
     this.creation = creation;
-	this.photo_url = photo_url;
+    this.photo_url = photo_url;
   }
 
   /** Returns the ID of this User. */
