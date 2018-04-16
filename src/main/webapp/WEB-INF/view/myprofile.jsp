@@ -44,17 +44,17 @@
  </nav>
 
  <div class="container" style="width:60%; margin-left:auto; margin-right:auto; margin-top: 50px;">		
-	<div>
-		<h1>My Profile</h1>	
-	</div>
-	<div class="row boxed">
-		<div class="column35" style="padding: 25px;"> 
-			<img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
-		</div>
-		<div class="column65" align="center"> 
-			<h1>Name and other info here</h1>
-		</div>
-	</div>
+  <div>
+    <h1>My Profile</h1>	
+  </div>
+  <div class="row boxed">
+    <div class="column35" style="padding: 25px;"> 
+      <img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
+    </div>
+    <div class="column65" align="center"> 
+      <h1>Name and other info here</h1>
+    </div>
+   </div>
  
  </div>
 </body>
