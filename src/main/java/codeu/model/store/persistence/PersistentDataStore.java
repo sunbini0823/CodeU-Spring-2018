@@ -148,6 +148,32 @@ public class PersistentDataStore {
     return messages;
   }
 
+
+    /** Update the photo_url attribute of User object to the Datastore service. */
+  public void updateThrough(User user, String photo_url)  throws PersistentDataStoreException {
+    // Retrieve all users from the datastore.
+    Query query = new Query("chat-users");
+    PreparedQuery results = datastore.prepare(query);
+
+    for (Entity entity : results.asIterable()) {
+      try {
+
+        String userName = (String) entity.getProperty("username");
+		if (userName.equals(user.getName())) {
+			entity.setProperty("photo_url", photo_url);
+			datastore.put(entity);
+			break;
+		}
+		
+      } catch (Exception e) {
+        // In a production environment, errors should be very rare. Errors which may
+        // occur include network errors, Datastore service errors, authorization errors,
+        // database entity definition mismatches, or service mismatches.
+        throw new PersistentDataStoreException(e);
+      }
+    }
+  }
+  
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {
     Entity userEntity = new Entity("chat-users");

@@ -2,6 +2,7 @@ package codeu.model.store.basic;
 
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,6 +75,16 @@ public class UserStoreTest {
     Mockito.verify(mockPersistentStorageAgent).writeThrough(inputUser);
   }
 
+  public void testUpdateUserPhoto() throws PersistentDataStoreException {
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+    String photo_url = "http://via.placeholder.com/350x150";
+    userStore.updateUserPhoto(inputUser, photo_url);
+    User resultUser = userStore.getUser("test_username");
+
+    assertEquals(inputUser, resultUser);
+    Mockito.verify(mockPersistentStorageAgent).writeThrough(inputUser);
+  }
+  
   @Test
   public void testIsUserRegistered_true() {
     Assert.assertTrue(userStore.isUserRegistered(USER_ONE.getName()));

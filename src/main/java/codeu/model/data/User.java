@@ -32,6 +32,7 @@ public class User {
    * @param name the username of this User
    * @param password the password of this User
    * @param creation the creation time of this User
+   * @param photo_url the photo url of this User
    */
   public User(UUID id, String name, String password, Instant creation, String photo_url) {
     this.id = id;
