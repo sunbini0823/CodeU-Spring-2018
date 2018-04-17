@@ -157,13 +157,12 @@ public class PersistentDataStore {
 
     for (Entity entity : results.asIterable()) {
       try {
-
         String userName = (String) entity.getProperty("username");
-		if (userName.equals(user.getName())) {
-			entity.setProperty("photo_url", photo_url);
-			datastore.put(entity);
-			break;
-		}
+	if (userName.equals(user.getName())) {
+		entity.setProperty("photo_url", photo_url);
+		datastore.put(entity);
+		break;
+	}
 		
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -181,7 +180,7 @@ public class PersistentDataStore {
     userEntity.setProperty("username", user.getName());
     userEntity.setProperty("password", user.getPassword());
     userEntity.setProperty("creation_time", user.getCreationTime().toString());
-	userEntity.setProperty("photo_url", user.getPhotoURL());
+    userEntity.setProperty("photo_url", user.getPhotoURL());
     datastore.put(userEntity);
   }
 
