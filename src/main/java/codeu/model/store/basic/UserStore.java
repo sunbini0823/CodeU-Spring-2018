@@ -76,8 +76,7 @@ public class UserStore {
    */
   public User getUser(String username) {
     // This approach will be pretty slow if we have many users. 
-	// Future Update: Hashmap with user ID would solve it
-	
+    // Future Update: Hashmap with user ID would solve it	
     for (User user : users) {
       if (user.getName().equals(username)) {
         return user;
@@ -112,13 +111,13 @@ public class UserStore {
   public void updateUserPhoto(User user, String photo_url)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
       if (users.get(i).getId().equals(users.get(i).getId())) {
-		  User temp = users.get(i);
-		  temp.setPhotoURL(photo_url);
+	User temp = users.get(i);
+	temp.setPhotoURL(photo_url);
         users.set(i, temp);
-		break;
+	break;
       }
     }
-	  persistentStorageAgent.updateThrough(user, photo_url);
+      persistentStorageAgent.updateThrough(user, photo_url);
   }
 
   /** Return true if the given username is known to the application. */
