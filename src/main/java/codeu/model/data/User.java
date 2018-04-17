@@ -39,7 +39,7 @@ public class User {
     this.name = name;
     this.password = password;
     this.creation = creation;
-	this.photo_url = photo_url;
+    this.photo_url = photo_url;
   }
 
   /** Returns the ID of this User. */
@@ -67,7 +67,7 @@ public class User {
     return photo_url;
   }
   
-   /** Updates the photo url of this User. */
+  /** Updates the photo url of this User. */
   public void setPhotoURL(String photo_url) {
     this.photo_url = photo_url;
   }
