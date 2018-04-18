@@ -23,6 +23,7 @@ public class User {
   private final String name;
   private final String password;
   private final Instant creation;
+  private String photo_url;
 
   /**
    * Constructs a new User.
@@ -32,11 +33,12 @@ public class User {
    * @param password the password of this User
    * @param creation the creation time of this User
    */
-  public User(UUID id, String name, String password, Instant creation) {
+  public User(UUID id, String name, String password, Instant creation, String photo_url) {
     this.id = id;
     this.name = name;
     this.password = password;
     this.creation = creation;
+    this.photo_url = photo_url;
   }
 
   /** Returns the ID of this User. */
@@ -57,5 +59,15 @@ public class User {
   /** Returns the creation time of this User. */
   public Instant getCreationTime() {
     return creation;
+  }
+  
+  /** Returns the photo url of this User. */
+  public String getPhotoURL() {
+    return photo_url;
+  }
+  
+   /** Updates the photo url of this User. */
+  public void setPhotoURL(String photo_url) {
+    this.photo_url = photo_url;
   }
 }
