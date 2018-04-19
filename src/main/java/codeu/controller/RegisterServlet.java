@@ -59,10 +59,9 @@ public class RegisterServlet extends HttpServlet {
     throws IOException, ServletException {
         
         String username = request.getParameter("username");
-	String email = request.getParameter("email");     
+		String email = request.getParameter("email");     
         String password = request.getParameter("password");
         String passwordHash = BCrypt.hashpw(password, BCrypt.gensalt());
-	String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
         
         //alphanumeric check
         if (!username.matches("[\\w*\\s*]*")) {
@@ -87,7 +86,7 @@ public class RegisterServlet extends HttpServlet {
 			return;
 		}  
 		
-        User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), photo_url);   
+        User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now());   
         userStore.addUser(user);
         
         /*Show alert message to users that they will be redirected to login page*/
