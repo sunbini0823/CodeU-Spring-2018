@@ -34,6 +34,7 @@
     <% if(request.getSession().getAttribute("user") != null){ %>
       <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
 	  <a href="/myprofile">My Profile</a>
+	<a href="/logout">Logout</a>
     <% } else{ %>
       <a href="/login">Login</a>
 	  <a href="/register">Register</a>
@@ -50,12 +51,14 @@
     <% if(request.getSession().getAttribute("user") != null){ %>
       <h1>New Conversation</h1>
       <form action="/conversations" method="POST">
-          <div class="form-group">
-            <label class="form-control-label">Title:</label>
-          <input type="text" name="conversationTitle">
+          <div class="form-group row">
+            <label class="col-1 col-form-label">Title:</label>
+			<div class="col-3">
+              <input type="text" class="form-control" name="conversationTitle">
+			</div>
         </div>
 
-        <button type="submit">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
       </form>
 
       <hr/>
