@@ -19,9 +19,7 @@ import codeu.model.store.basic.UserStore;
 * Servlet class responsible for profile feed.
 */
 public class MyProfileServlet extends HttpServlet {
-	/**
-  	* Store class that gives access to Users.
-  	*/
+
   /** Store class that gives access to Users. */
   private UserStore userStore;
 

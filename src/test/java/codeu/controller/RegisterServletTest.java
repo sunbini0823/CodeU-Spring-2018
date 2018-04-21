@@ -39,9 +39,9 @@ public class RegisterServletTest {
  
  @Test
  public void testDoPost_ExistingUser() throws IOException, ServletException {
-	Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
+    Mockito.when(mockRequest.getParameter("username")).thenReturn("test username");
 	
-	UserStore mockUserStore = Mockito.mock(UserStore.class);
+    UserStore mockUserStore = Mockito.mock(UserStore.class);
     Mockito.when(mockUserStore.isUserRegistered("test username")).thenReturn(true);
     registerServlet.setUserStore(mockUserStore);
 
@@ -53,15 +53,15 @@ public class RegisterServletTest {
   
  @Test
  public void testDoPost_EmptyUsername() {
-	String testEmail = "user@.invalid.com";
-	String testEmail2 = "user@valid.com";
+    String testEmail = "user@.invalid.com";
+    String testEmail2 = "user@valid.com";
 
-	RegisterServlet emailTest = new RegisterServlet();
-	boolean result = emailTest.isValid(testEmail);
-	boolean result2 = emailTest.isValid(testEmail2);
+    RegisterServlet emailTest = new RegisterServlet();
+    boolean result = emailTest.isValid(testEmail);
+    boolean result2 = emailTest.isValid(testEmail2);
 
-	Assert.assertEquals(false, result);
-	Assert.assertEquals(true, result2);
+    Assert.assertEquals(false, result);
+    Assert.assertEquals(true, result2);
  }
   
 }

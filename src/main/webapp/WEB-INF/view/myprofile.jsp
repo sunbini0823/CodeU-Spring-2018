@@ -36,30 +36,28 @@
 
  <div class="container" style="width:60%; margin-left:auto; margin-right:auto; margin-top: 50px;">		
 	<div>
-		<h1>My Profile</h1>	
+	   <h1>My Profile</h1>	
 	</div>
-	 <% if(request.getAttribute("error") != null){ %>
-       <h2 style="color:red"><%= request.getAttribute("error") %></h2>
-   <% } %>
+	<% if(request.getAttribute("error") != null){ %>
+	<h2 style="color:red"><%= request.getAttribute("error") %></h2>
+	<% } %>
 	<div class="row boxed justify-content-center">
-		<div class="col-3"> 
-			<img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
-		</div>
-		<div class="col-6 align-text-center"> 
-			<h3>Username: <%= request.getSession().getAttribute("user") %>!</h3>
-			<form action="/myprofile" method="POST">
-              <div id="load_url" class="form-group row justify-content-center">
+	   <div class="col-3"> 
+		    <img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
+	   </div>
+	   <div class="col-6 align-text-center"> 
+		    <h3>Username: <%= request.getSession().getAttribute("user") %>!</h3>
+		    <form action="/myprofile" method="POST">
+		      <div id="load_url" class="form-group row justify-content-center">
 		        <label for="photo_url" class="col-2 col-form-label">URL: </label>
-		        <div class="col-6">
-			      <input type="text" class="form-control" name="photo_url" id="photo_url">
-	            </div>
-				<button type="submit" class="btn btn-primary">Update</button>
-	          </div>
-			</form>
-			
-		</div>
+		      <div class="col-6">
+		    	<input type="text" class="form-control" name="photo_url" id="photo_url">
+		      </div>
+		      <button type="submit" class="btn btn-primary">Update</button>
+		     </div>
+		   </form>
+	   </div>
 	</div>
- 
  </div>
 </body>
 </html>
