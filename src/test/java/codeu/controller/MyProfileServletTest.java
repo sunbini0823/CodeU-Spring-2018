@@ -51,7 +51,7 @@ public class MyProfileServletTest {
    myprofileServlet.doPost(mockRequest, mockResponse);
 
    if (mockUser != null){
-	 String photo_url = "http://via.placeholder.com/350x150";
+     String photo_url = "http://via.placeholder.com/350x150";
      Mockito.verify(mockSession).setAttribute("photo_url", null);
      Mockito.verify(mockResponse).sendRedirect("/myprofile");
    } 
