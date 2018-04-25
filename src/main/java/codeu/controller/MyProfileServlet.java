@@ -50,24 +50,24 @@ public class MyProfileServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response)
   throws IOException, ServletException {
-	 String username = (String) request.getSession().getAttribute("user");
-	 User user = userStore.getUser(username);
-	 String photo_url = request.getParameter("photo_url");
+      String username = (String) request.getSession().getAttribute("user");
+      User user = userStore.getUser(username);
+      String photo_url = request.getParameter("photo_url");
 
-	 if (user != null) {
-	   user.setPhotoURL(photo_url);
-	     try {
-		   userStore.updateUserPhoto(user, photo_url);
-		 }
-		   catch (Exception e) {
-		   System.out.println(e);	
-		 }	
-       request.getSession().setAttribute("photo_url", user.getPhotoURL());
-       response.sendRedirect("/myprofile");
-	 }
-	 else {  //user object not found - if not logged in, can't change the picture
-	   request.setAttribute("error", "Error, please login.");
-       request.getRequestDispatcher("/WEB-INF/view/myprofile.jsp").forward(request, response);
-	 }
+      if (user != null) {
+	  user.setPhotoURL(photo_url);
+	  try {
+	       userStore.updateUserPhoto(user, photo_url);
+	      }
+	  catch (Exception e) {
+	       System.out.println(e);	
+	      }	
+	  request.getSession().setAttribute("photo_url", user.getPhotoURL());
+          response.sendRedirect("/myprofile");
+      }
+      else {  //user object not found - if not logged in, can't change the picture
+      request.setAttribute("error", "Error, please login.");
+      request.getRequestDispatcher("/WEB-INF/view/myprofile.jsp").forward(request, response);
+  }
  }
 }
