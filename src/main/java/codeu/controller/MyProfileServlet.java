@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.mindrot.jbcrypt.BCrypt;
 
 import codeu.model.data.User;
+import codeu.model.store.basic.UserStore;
 
 /**
 * Servlet class responsible for profile feed.
