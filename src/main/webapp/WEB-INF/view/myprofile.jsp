@@ -53,14 +53,9 @@
 		<div class="column65" align="center"> 
 			<h1>Name and other info here</h1>
       <form action="/myprofile" method="POST">
-           <!-- <label name="conversationTitle"> <%= request.getSession().getAttribute("user") %> </label> -->
         <button type="submit"> Message <%= request.getSession().getAttribute("user") %></button>
       </form>
-<!-- 
-      <form action="/conversations" method="POST">
-      <button type = "submit">
-        Message <%= request.getSession().getAttribute("user") %></button>
-        </form>
+
 		</div>
 	</div>
  </div>
