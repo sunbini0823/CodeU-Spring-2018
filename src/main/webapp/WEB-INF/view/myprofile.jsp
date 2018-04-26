@@ -1,4 +1,6 @@
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="java.util.List" %>
+
 <%Conversation conversation = (Conversation) request.getAttribute("conversation");%>
 
 
@@ -56,6 +58,32 @@
         <button type="submit"> Message <%= request.getSession().getAttribute("user") %></button>
       </form>
 
+
+    <h1>Conversations</h1>
+
+    <%
+    List<Conversation> conversations =
+      (List<Conversation>) request.getAttribute("conversations");
+    if(conversations == null || conversations.isEmpty()){
+    %>
+      <p>Create a conversation to get started.</p>
+    <%
+    }
+    else{
+    %>
+      <ul class="mdl-list">
+    <%
+      for(Conversation conv : conversations){
+    %>
+      <li><a href="/chat/<%= conv.getTitle() %>">
+        <%= conv.getTitle() %></a></li>
+    <%
+      }
+    %>
+      </ul>
+    <%
+    }
+    %>
 		</div>
 	</div>
  </div>
