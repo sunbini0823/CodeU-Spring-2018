@@ -64,15 +64,16 @@ public class MessageStoreTest {
   
   @Test
   public void testGetRecentMessages() {
-	Message inputMessage =
-	        new Message(UUID.randomUUID(), CONVERSATION_ID_ONE, UUID.randomUUID(), "recent_message", Instant.now());
+	Message inputMessage = new Message(UUID.randomUUID(), CONVERSATION_ID_ONE, UUID.randomUUID(), "recent_message", Instant.now());
+	Message oldMessage = new Message(UUID.randomUUID(), CONVERSATION_ID_ONE, UUID.randomUUID(), "old_message", Instant.parse("1998-10-21T10:12:35Z"));
 	
 	messageStore.addMessage(inputMessage);
+	messageStore.addMessage(oldMessage);
 	
-    List<Message> resultMessages =
-        messageStore.getRecentMessages();
+    List<Message> resultMessages = messageStore.getRecentMessages();
 
     assertEquals(inputMessage, resultMessages.get(0));
+    Assert.assertEquals(resultMessages.size(), 1); //old message should not be in resultMessages
   }
 
   @Test

@@ -76,15 +76,16 @@ public class ConversationStoreTest {
 
   @Test
   public void testGetRecentConversations() {
-	Conversation inputConversation =
-	        new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_recent", Instant.now());
+	Conversation inputConversation = new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_recent", Instant.now());
+	Conversation oldConversation = new Conversation(UUID.randomUUID(), UUID.randomUUID(), "test_old", Instant.parse("1998-10-21T10:12:35Z"));
 	
 	conversationStore.addConversation(inputConversation);
+	conversationStore.addConversation(oldConversation);
 	
-    List<Conversation> resultConversations =
-        conversationStore.getRecentConversations();
+    List<Conversation> resultConversations = conversationStore.getRecentConversations();
 
     assertEquals(inputConversation, resultConversations.get(0));
+    Assert.assertEquals(1, resultConversations.size());
   }
 
   @Test
