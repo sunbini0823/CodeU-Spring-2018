@@ -86,6 +86,7 @@
     <url-pattern>/myprofile</url-pattern>
   </servlet-mapping>
   
+
   <servlet>
     <servlet-name>ActivityFeedServlet</servlet-name>
     <servlet-class>codeu.controller.ActivityFeedServlet</servlet-class>
@@ -96,4 +97,15 @@
     <url-pattern>/activityfeed</url-pattern>
   </servlet-mapping>
   
+
+   <servlet>
+    <servlet-name>LogoutServlet</servlet-name>
+    <servlet-class>codeu.controller.LogoutServlet</servlet-class>
+  </servlet>
+
+  <servlet-mapping>
+    <servlet-name>LogoutServlet</servlet-name>
+    <url-pattern>/logout</url-pattern>
+  </servlet-mapping>
+
 </web-app>
