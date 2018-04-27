@@ -72,9 +72,9 @@ public class RegisterServlet extends HttpServlet {
         }
         // if username is empty
 	    if (username.matches("")) {
-		    request.setAttribute("error", "Invalid username. Please enter letters/numbers/spaces.");
-		    request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
-		    return;
+            request.setAttribute("error", "Invalid username. Please enter letters/numbers/spaces.");
+	    request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+	    return;
 	    }
         if (userStore.isUserRegistered(username)) {
             request.setAttribute("error", "That username is already taken.");
@@ -82,10 +82,10 @@ public class RegisterServlet extends HttpServlet {
             return;
         }
         if (!isValid(email)) {
-			request.setAttribute("error", "Invalid email address.");
-			request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
-			return;
-		}  
+	    request.setAttribute("error", "Invalid email address.");
+	    request.getRequestDispatcher("/WEB-INF/view/register.jsp").forward(request, response);
+	    return;
+	}  
 		
         User user = new User(UUID.randomUUID(), username, passwordHash, Instant.now(), photo_url);   
         userStore.addUser(user);

@@ -55,11 +55,12 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <a href="/conversations">Conversations</a>
       <% if (request.getSession().getAttribute("user") != null) { %>
     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+	<a href="/myprofile">My Profile</a>
+	<a href="/logout">Logout</a>
     <% } else { %>
       <a href="/login">Login</a>
 	  <a href="/register">Register</a>
     <% } %>
-	<a href="/myprofile">My Profile</a>
     <a href="/about.jsp">About</a>
   </nav>
 
@@ -88,9 +89,9 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 
     <% if (request.getSession().getAttribute("user") != null) { %>
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <input type="text" name="message">
+        <input type="text" name="message" class="form-control">
         <br/>
-        <button type="submit">Send</button>
+        <button type="submit" class="btn btn-primary">Send</button>
     </form>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>

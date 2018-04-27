@@ -16,10 +16,10 @@ package codeu.model.store.basic;
 
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
-
 /**
  * Store class that uses in-memory data structures to hold values and automatically loads from and
  * saves to PersistentStorageAgent. It's a singleton so all servlet classes can access the same
@@ -75,7 +75,8 @@ public class UserStore {
    * @return null if username does not match any existing User.
    */
   public User getUser(String username) {
-    // This approach will be pretty slow if we have many users.
+    // This approach will be pretty slow if we have many users. 
+    // Future Update: Hashmap with user ID would solve it	
     for (User user : users) {
       if (user.getName().equals(username)) {
         return user;
@@ -102,6 +103,21 @@ public class UserStore {
   public void addUser(User user) {
     users.add(user);
     persistentStorageAgent.writeThrough(user);
+  }
+  
+  /** Updates the photo url of a current user. 
+  * Currently, it's itirating through the users array, 
+  * but if we change the data structure to a hashmap, this should change too */
+  public void updateUserPhoto(User user, String photo_url)  throws PersistentDataStoreException {
+  for (int i = 0; i < users.size(); i++) {
+      if (users.get(i).getId().equals(user.getId())) {
+	User temp = users.get(i);
+	temp.setPhotoURL(photo_url);
+        users.set(i, temp);
+	break;
+      }
+    }
+      persistentStorageAgent.updateThrough(user, photo_url);
   }
 
   /** Return true if the given username is known to the application. */

@@ -45,6 +45,7 @@
    <% if(request.getSession().getAttribute("user") != null){ %>
      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
 	 <a href="/myprofile">My Profile</a>
+	 <a href="/logout">Logout</a>
    <% } else{ %>
      <a href="/login">Login</a>
 	 <a href="/register">Register</a>
@@ -64,13 +65,13 @@
     <div class="form-group row justify-content-center">
       <label for="username" class="col-2 col-form-label">Username: </label>
       <div class="col-6">
-	<input type="text" class="form-control" name="username" id="username">
+          <input type="text" class="form-control" name="username" id="username">
       </div>
     </div>
     <div class="form-group row justify-content-center">		
       <label for="password" class="col-2 col-form-label">Password: </label>
       <div class="col-6">
-	<input type="password" class="form-control" name="password" id="password">
+          <input type="password" class="form-control" name="password" id="password">
       </div>
     </div>
     <button type="submit" class="btn btn-primary center-block">Login</button>

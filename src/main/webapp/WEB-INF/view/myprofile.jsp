@@ -9,23 +9,13 @@
  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
  <style>
-   label {
-     display: inline-block;
-     width: 100px;
-   }
    .boxed {
+	 padding-top: 30px;
+	 padding-bottom: 30px;
      border: 2px solid blue;
 	 background-color: #eaeffa;
    }
-   .row {
-     display: flex;
-   }
-   .column35 {
-     flex: 35%;
-   } 
-   .column65 {
-     flex: 65%;
-   }    
+    
  </style>
 </head>
 <body>
@@ -36,6 +26,7 @@
    <% if(request.getSession().getAttribute("user") != null){ %>
      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
 	 <a href="/myprofile">My Profile</a>
+	 <a href="/logout">Logout</a>
    <% } else{ %>
      <a href="/login">Login</a>
 	 <a href="/register">Register</a>
@@ -44,18 +35,29 @@
  </nav>
 
  <div class="container" style="width:60%; margin-left:auto; margin-right:auto; margin-top: 50px;">		
-  <div>
-    <h1>My Profile</h1>	
-  </div>
-  <div class="row boxed">
-    <div class="column35" style="padding: 25px;"> 
-      <img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
-    </div>
-    <div class="column65" align="center"> 
-      <h1>Name and other info here</h1>
-    </div>
-   </div>
- 
+	<div>
+	   <h1>My Profile</h1>	
+	</div>
+	<% if(request.getAttribute("error") != null){ %>
+	<h2 style="color:red"><%= request.getAttribute("error") %></h2>
+	<% } %>
+	<div class="row boxed justify-content-center">
+	   <div class="col-3"> 
+		    <img src="<%= request.getSession().getAttribute("photo_url") %>" alt="img" width="200" height="200"/>
+	   </div>
+	   <div class="col-6 align-text-center"> 
+		    <h3>Username: <%= request.getSession().getAttribute("user") %>!</h3>
+		    <form action="/myprofile" method="POST">
+		      <div id="load_url" class="form-group row justify-content-center">
+		        <label for="photo_url" class="col-2 col-form-label">URL: </label>
+		      <div class="col-6">
+		    	<input type="text" class="form-control" name="photo_url" id="photo_url">
+		      </div>
+		      <button type="submit" class="btn btn-primary">Update</button>
+		     </div>
+		   </form>
+	   </div>
+	</div>
  </div>
 </body>
 </html>
