@@ -46,9 +46,9 @@ public class PersistentStorageAgentTest {
 
   @Test
   public void testUpdateThrough() throws PersistentDataStoreException {
-    User user = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
     String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
-	persistentStorageAgent.updateThrough(user, photo_url);
+    User user = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url);   
+    persistentStorageAgent.updateThrough(user, photo_url);
     Mockito.verify(mockPersistentDataStore).updateThrough(user, photo_url);
   }
   
