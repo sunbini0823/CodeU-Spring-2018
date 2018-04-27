@@ -16,11 +16,8 @@ package codeu.model.store.basic;
 
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
-<<<<<<< HEAD
 import java.time.Instant;
-=======
 import codeu.model.store.persistence.PersistentDataStoreException;
->>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
