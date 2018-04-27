@@ -110,7 +110,7 @@ public class UserStore {
   * but if we change the data structure to a hashmap, this should change too */
   public void updateUserPhoto(User user, String photo_url)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getId().equals(users.get(i).getId())) {
+      if (users.get(i).getId().equals(user.getId())) {
 	User temp = users.get(i);
 	temp.setPhotoURL(photo_url);
         users.set(i, temp);
