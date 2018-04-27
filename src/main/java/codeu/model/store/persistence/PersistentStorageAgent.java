@@ -88,6 +88,11 @@ public class PersistentStorageAgent {
   public List<Message> loadMessages() throws PersistentDataStoreException {
     return persistentDataStore.loadMessages();
   }
+  
+  /** Update the photo_url attribute of User object to the Datastore service. */
+  public void updateThrough(User user, String photo_url)  throws PersistentDataStoreException{
+	persistentDataStore.updateThrough(user, photo_url);
+  }
 
   /** Write a User object to the Datastore service. */
   public void writeThrough(User user) {

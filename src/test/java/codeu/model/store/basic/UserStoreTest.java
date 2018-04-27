@@ -3,6 +3,7 @@ package codeu.model.store.basic;
 import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
+import codeu.model.store.persistence.PersistentDataStoreException;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,11 @@ public class UserStoreTest {
   private PersistentStorageAgent mockPersistentStorageAgent;
 
   private final User USER_ONE =
-      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000));
+      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
   private final User USER_TWO =
-      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000));
+      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
   private final User USER_THREE =
-      new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000));
+      new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
 
   @Before
   public void setup() {
@@ -80,7 +81,7 @@ public class UserStoreTest {
 
   @Test
   public void testAddUser() {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now());
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
 
     userStore.addUser(inputUser);
     User resultUser = userStore.getUser("test_username");
@@ -89,6 +90,16 @@ public class UserStoreTest {
     Mockito.verify(mockPersistentStorageAgent).writeThrough(inputUser);
   }
 
+  public void testUpdateUserPhoto() throws PersistentDataStoreException {
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+    String photo_url = "http://via.placeholder.com/350x150";
+    userStore.updateUserPhoto(inputUser, photo_url);
+    User resultUser = userStore.getUser("test_username");
+
+    assertEquals(inputUser, resultUser);
+    Mockito.verify(mockPersistentStorageAgent).writeThrough(inputUser);
+  }
+  
   @Test
   public void testIsUserRegistered_true() {
     Assert.assertTrue(userStore.isUserRegistered(USER_ONE.getName()));
