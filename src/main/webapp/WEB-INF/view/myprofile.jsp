@@ -35,6 +35,10 @@
    .nav-item a:hover{
 	 background-color: #014308;
    }
+   .tab-content #profile label {
+	 font-size: 30px;
+	 padding-right: 10px;
+   }
    @media screen and (max-width: 992px){
 	 .form-check .form-check-label {
 	    font-size: 25px
@@ -104,8 +108,63 @@
 		<div class="tab-content" id="tabContent">
 		    <div class="tab-pane fade show active" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 		       <h5>Username: <%= request.getSession().getAttribute("user") %></h5>
-		       <h5>Skills: <%= request.getSession().getAttribute("user_skills")%></h5>
 		       <h5>About: <%= request.getSession().getAttribute("about")%></h5>		
+			   <h5>Skills:</h5>
+			   
+               <% String my_skills = (String)request.getSession().getAttribute("user_skills");
+			   if (my_skills != null){
+				   String[] s = my_skills.split(",");	   
+				   for (String skill : s) { 
+					  switch(skill){
+						 case "python":
+							%><label class="form-check-label" for="python"><i class="fab fa-python"></i></label> <%
+							break;
+						case "java":
+							%><label class="form-check-label" for="java"><i class="fab fa-java"></i></label> <%
+							break;
+						case "php":
+							%><label class="form-check-label" for="php"><i class="fab fa-php"></i></label> <%
+							break;
+						case "c++":
+							%><label class="form-check-label" for="c++"><p>C++</p></label> <%
+							break;
+						case "c#":
+							%><label class="form-check-label" for="c#"><p>C#</p></label> <%
+							break;
+						case "pearl":
+							%><label class="form-check-label" for="pearl"><p>Pearl</p></label> <%
+							break;
+						case "ionic":
+							%><label class="form-check-label" for="ionic"><p>Ionic</p></label> <%
+							break;
+						case "angular":
+							%><label class="form-check-label" for="angular"><i class="fab fa-angular"></i></label> <%
+							break;
+						case "react":
+							%><label class="form-check-label" for="react"><i class="fab fa-react"></i></label> <%
+							break;
+						case "vue":
+							%><label class="form-check-label" for="vue"><i class="fab fa-vuejs"></i></label> <%
+							break;
+						case "js":
+							%><label class="form-check-label" for="js"><i class="fab fa-js-square"></i></label> <%
+							break;	
+						case "html":
+							%><label class="form-check-label" for="html"><i class="fab fa-html5"></i></label> <%
+							break;
+						case "css":
+							%><label class="form-check-label" for="css"><i class="fab fa-css3-alt"></i></label> <%
+							break;
+						case "nodejs":
+							%><label class="form-check-label" for="nodejs"><i class="fab fa-node"></i></label> <%
+							break;
+						default:
+							break;
+						}
+					}
+			    } %>			   
+			   
+			   
 		    </div>
 		    <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="update-tab">
 				<form action="/myprofile" method="POST">

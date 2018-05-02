@@ -65,7 +65,7 @@ public class MyProfileServlet extends HttpServlet {
 			my_skills.add(skill);
 		}
 	}
-	String user_skills = String.join(", ", my_skills);
+	String user_skills = String.join(",", my_skills);
 
 	if (user != null) {
 		user.setPhotoURL(photo_url);

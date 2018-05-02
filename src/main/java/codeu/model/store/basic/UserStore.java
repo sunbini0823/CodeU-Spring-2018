@@ -17,6 +17,7 @@ package codeu.model.store.basic;
 import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import codeu.model.store.persistence.PersistentDataStoreException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -111,9 +112,6 @@ public class UserStore {
   public void updateUserPhoto(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
       if (users.get(i).getId().equals(user.getId())) {
-		System.out.println("Here");
-		System.out.println(user_skills);
-		System.out.println(about);
 		User temp = users.get(i);
 		temp.setPhotoURL(photo_url);
 		temp.setSkills(user_skills);
