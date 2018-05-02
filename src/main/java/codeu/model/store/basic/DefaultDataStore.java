@@ -99,9 +99,12 @@ public class DefaultDataStore {
 
     List<String> randomUsernames = getRandomUsernames();
     Collections.shuffle(randomUsernames);
-
+    List<String> randomSkills= getRandomSkills();
+    Collections.shuffle(randomSkills);
+	
     for (int i = 0; i < DEFAULT_USER_COUNT; i++) {
-      User user = new User(UUID.randomUUID(), randomUsernames.get(i), BCrypt.hashpw("password", BCrypt.gensalt()), Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+      User user = new User(UUID.randomUUID(), randomUsernames.get(i), BCrypt.hashpw("password", BCrypt.gensalt()), Instant.now(),
+	  "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100", randomSkills.get(i), "random about");
       PersistentStorageAgent.getInstance().writeThrough(user);
       users.add(user);
     }
@@ -170,7 +173,31 @@ public class DefaultDataStore {
     randomUsernames.add("Karen");
     return randomUsernames;
   }
-
+  private List<String> getRandomSkills() {
+    List<String> randomSkills = new ArrayList<>();
+    randomSkills.add("python,react");
+	randomSkills.add("html,js,angular");
+    randomSkills.add("js");
+    randomSkills.add("perl");
+	randomSkills.add("css");
+    randomSkills.add("python,c++");
+	randomSkills.add("html,css");
+    randomSkills.add("js");
+    randomSkills.add("perl,java");
+	randomSkills.add("css,angular");
+	randomSkills.add("python,react");
+	randomSkills.add("html,js,angular");
+    randomSkills.add("js");
+    randomSkills.add("perl");
+	randomSkills.add("css");
+    randomSkills.add("python,c++");
+	randomSkills.add("html,css");
+    randomSkills.add("js");
+    randomSkills.add("perl,java");
+	randomSkills.add("css,angular");
+	return randomSkills;
+  }
+  
   private String getRandomMessageContent() {
     String loremIpsum =
         "dolorem ipsum, quia dolor sit amet consectetur adipiscing velit, "

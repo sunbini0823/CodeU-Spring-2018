@@ -42,7 +42,9 @@ public class MyProfileServletTest {
    Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
    Mockito.when(mockSession.getAttribute("user")).thenReturn("test username"); 
    Mockito.when(mockRequest.getParameter("photo_url")).thenReturn("test photo_url");
-   
+   Mockito.when(mockRequest.getParameter("user_skills")).thenReturn("test user_skills");
+   Mockito.when(mockRequest.getParameter("about")).thenReturn("test about");
+
    UserStore mockUserStore = Mockito.mock(UserStore.class);
    myprofileServlet.setUserStore(mockUserStore);
    

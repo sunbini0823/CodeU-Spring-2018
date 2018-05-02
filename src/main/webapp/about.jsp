@@ -35,7 +35,7 @@
       font-family: 'Cabin', Helvetica, Arial, sans-serif;
     }
     .name{
-      float:left;
+      
       color: black;
       text-align: center;
       padding-top: 10px;
@@ -43,8 +43,8 @@
       font-size: 24px;
       margin-left: 1%;
       margin-right: 1%;
-      width: 16%;
-      height: 50px;
+      width: 110%;
+      height: 50%;
       margin-bottom: 40px;
       font-family: 'Lobster Two', cursive;
       -webkit-transition-duration: 0.4s; /* Safari */
@@ -74,13 +74,12 @@
     .n5{
       background-color: #B8F5F7; color: black;
     }
-
+    img{
+	  margin-bottom: 30px;	
+	}
   </style>
 </head>
 <body>
-
-  <div class="container-fluid">
-
     <nav>
      <a id="navTitle" href="/">CodeU Chat App</a>
      <a href="/conversations">Conversations</a>
@@ -94,19 +93,49 @@
      <% } %>
      <a href="/about.jsp">About</a>
    </nav>
-
+   
+ <div class="container">
     <div style="text-align: center; margin-top: 30px; margin-bottom: 30px;">
       <h2 style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</h2>
     </div>
 
-    <div style="margin-left: 12.5%;">
-      <button class="btn name n1" onclick="aditi()">PA- Aditi Jain</button>
-      <button class="btn name n2" onclick="anujin()">Anujin Munkhbat</button>
-      <button class="btn name n3" onclick="inbar()">Inbar Kodesh</button>
-      <button class="btn name n4" onclick="sunbin()">Sunbin Kim</button>
-      <button class="btn name n5" onclick="sophie()">Sophie Wu</button>
-    </div>
-
+    <div class="row justify-content-center text-center">
+	  <div class="col-2">
+        <img src="https://lh4.googleusercontent.com/-MpFXB1m7qPQ/AAAAAAAAAAI/AAAAAAAAATw/z5JAJJ1iJ9w/s64/photo.jpg" alt="Aditi" class="rounded img-fluid" width="120" height="120"/> 
+	  </div>
+	  <div class="col-2">
+        <img src="https://scontent.fsnc1-1.fna.fbcdn.net/v/t1.0-9/29791847_1915226268529605_3315042041827335933_n.jpg?_nc_cat=0&oh=d87fd1c7a791551c0aeece29203d48c7&oe=5B56FBA3" alt="Anujin" class="rounded img-fluid" width="150" height="150"/> 
+	  </div>
+	  <div class="col-2">
+        <img src="https://scontent.fsnc1-1.fna.fbcdn.net/v/t1.0-9/12079421_989283934468701_6142647328162868473_n.jpg?_nc_cat=0&oh=2b0285d2b8c7582fc3a495dc392ca80c&oe=5B720085" alt="Inbar" class="rounded img-fluid" width="150" height="150"/> 
+	  </div>
+	  <div class="col-2">
+        <img src="https://scontent.fsnc1-1.fna.fbcdn.net/v/t1.0-9/13423851_1125291940855328_8717554326577718503_n.jpg?_nc_cat=0&oh=28506dbed6670def52f672ca4cb531bc&oe=5B6B1994" alt="Sunbin" class="rounded img-fluid" width="150" height="150"/> 
+	  </div>
+	  <div class="col-2">
+        <img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/15781765_1235894409791591_7251308027829391949_n.jpg?_nc_cat=0&oh=010a20d68d738c11dfcfce3273e97dee&oe=5B92F249" alt="Sophie" class="rounded img-fluid" width="150" height="120"/>  
+	  </div>
+	</div>
+	<div class="row justify-content-center">
+	  <div class="col-2"> 
+	    <button class="btn name n1" onclick="aditi()">PA- Aditi Jain</button>
+	  </div>
+      <div class="col-2"> 
+	    <button class="btn name n2" onclick="anujin()">Anujin Munkhbat</button>
+	  </div>
+	  <div class="col-2"> 
+        <button class="btn name n3" onclick="inbar()">Inbar Kodesh</button>	  
+	  </div>
+	  <div class="col-2"> 
+        <button class="btn name n4" onclick="sunbin()">Sunbin Kim</button>  
+	  </div>
+	  <div class="col-2"> 
+        <button class="btn name n5" onclick="sophie()">Sophie Wu</button>	  
+	  </div>
+	</div>
+  
+	
+	<div>
     <p id="add"> </p>
 
     <script>
@@ -133,7 +162,7 @@
 
     </script>
 
-
+    </div>
   </div>
 </body>
 </html>

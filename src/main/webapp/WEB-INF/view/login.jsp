@@ -29,9 +29,6 @@
      display: inline-block;
      width: 100px;
    }
-   .container{
-	 padding-top: 50px;
-   }
    .btn{
      width: 100px;
    }
@@ -74,7 +71,7 @@
           <input type="password" class="form-control" name="password" id="password">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary center-block">Login</button>
+    <button type="submit" class="btn btn-success center-block">Login</button>
    </form>
  </div>
 </body>

@@ -16,13 +16,13 @@ public class UserStoreTest {
 
   private UserStore userStore;
   private PersistentStorageAgent mockPersistentStorageAgent;
-
+  private String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
   private final User USER_ONE =
-      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000), photo_url, "", "test_about_one");
   private final User USER_TWO =
-      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
-  private final User USER_THREE =
-      new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), photo_url, "", "test_about_two");
+  private final User USER_THREE =     
+	 new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), photo_url, "", "test_about_three");
 
   @Before
   public void setup() {
@@ -66,7 +66,7 @@ public class UserStoreTest {
 
   @Test
   public void testAddUser() {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about");
 
     userStore.addUser(inputUser);
     User resultUser = userStore.getUser("test_username");
@@ -76,9 +76,11 @@ public class UserStoreTest {
   }
 
   public void testUpdateUserPhoto() throws PersistentDataStoreException {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100");
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about");
     String photo_url = "http://via.placeholder.com/350x150";
-    userStore.updateUserPhoto(inputUser, photo_url);
+	String user_skills = "c++, java, js";
+	String about = "About me.";
+    userStore.updateUserPhoto(inputUser, photo_url, user_skills, about);
     User resultUser = userStore.getUser("test_username");
 
     assertEquals(inputUser, resultUser);
@@ -100,5 +102,8 @@ public class UserStoreTest {
     Assert.assertEquals(expectedUser.getName(), actualUser.getName());
     Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());
     Assert.assertEquals(expectedUser.getCreationTime(), actualUser.getCreationTime());
+	Assert.assertEquals(expectedUser.getPhotoURL(), actualUser.getPhotoURL());
+	Assert.assertEquals(expectedUser.getSkills(), actualUser.getSkills());
+	Assert.assertEquals(expectedUser.getAbout(), actualUser.getAbout());
   }
 }

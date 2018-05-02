@@ -13,9 +13,6 @@
      display: inline-block;
      width: 100px;
    }
-   .container{
-	 padding-top: 50px;
-   }
    .btn{
      width: 100px;
    }
@@ -67,7 +64,7 @@
 		    <input type="password" class="form-control" name="password" id="password">
 	    </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-success">Submit</button>
    </form>
  </div>
 </body>

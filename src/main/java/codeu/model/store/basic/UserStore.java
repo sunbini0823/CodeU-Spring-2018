@@ -105,19 +105,24 @@ public class UserStore {
     persistentStorageAgent.writeThrough(user);
   }
   
-  /** Updates the photo url of a current user. 
+  /** Updates the info of a current user. 
   * Currently, it's itirating through the users array, 
   * but if we change the data structure to a hashmap, this should change too */
-  public void updateUserPhoto(User user, String photo_url)  throws PersistentDataStoreException {
+  public void updateUserPhoto(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
-      if (users.get(i).getId().equals(users.get(i).getId())) {
-	User temp = users.get(i);
-	temp.setPhotoURL(photo_url);
+      if (users.get(i).getId().equals(user.getId())) {
+		System.out.println("Here");
+		System.out.println(user_skills);
+		System.out.println(about);
+		User temp = users.get(i);
+		temp.setPhotoURL(photo_url);
+		temp.setSkills(user_skills);
+		temp.setAbout(about);
         users.set(i, temp);
-	break;
+		break;
       }
     }
-      persistentStorageAgent.updateThrough(user, photo_url);
+      persistentStorageAgent.updateThrough(user, photo_url, user_skills, about);
   }
 
   /** Return true if the given username is known to the application. */
