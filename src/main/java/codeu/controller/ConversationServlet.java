@@ -94,7 +94,7 @@ public class ConversationServlet extends HttpServlet {
     User user = userStore.getUser(username);
     if (user == null) {
       // user was not found, don't let them create a conversation
-      System.out.println("User not found: " + username);
+      //System.out.println("User not found: " + username); - testing
       response.sendRedirect("/conversations");
       return;
     }
