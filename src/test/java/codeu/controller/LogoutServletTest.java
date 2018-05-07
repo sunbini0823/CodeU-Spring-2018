@@ -20,7 +20,7 @@ public class LogoutServletTest {
   private RequestDispatcher mockRequestDispatcher;
 
   @Before
-  public void setup() {
+  public void setup() throws IOException {
     logoutServlet = new LogoutServlet();
     mockRequest = Mockito.mock(HttpServletRequest.class);
     mockResponse = Mockito.mock(HttpServletResponse.class);

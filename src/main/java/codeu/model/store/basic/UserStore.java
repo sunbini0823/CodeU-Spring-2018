@@ -18,6 +18,7 @@ import codeu.model.data.User;
 import codeu.model.store.persistence.PersistentStorageAgent;
 import java.time.Instant;
 import codeu.model.store.persistence.PersistentDataStoreException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -106,19 +107,21 @@ public class UserStore {
     persistentStorageAgent.writeThrough(user);
   }
   
-  /** Updates the photo url of a current user. 
+  /** Updates the info of a current user. 
   * Currently, it's itirating through the users array, 
   * but if we change the data structure to a hashmap, this should change too */
-  public void updateUserPhoto(User user, String photo_url)  throws PersistentDataStoreException {
+  public void updateUserPhoto(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
       if (users.get(i).getId().equals(user.getId())) {
-	User temp = users.get(i);
-	temp.setPhotoURL(photo_url);
+		User temp = users.get(i);
+		temp.setPhotoURL(photo_url);
+		temp.setSkills(user_skills);
+		temp.setAbout(about);
         users.set(i, temp);
-	break;
+		break;
       }
     }
-      persistentStorageAgent.updateThrough(user, photo_url);
+      persistentStorageAgent.updateThrough(user, photo_url, user_skills, about);
   }
 
   /** Return true if the given username is known to the application. */

@@ -38,6 +38,12 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       height: 500px;
       overflow-y: scroll
     }
+	#chat a {
+	  color: black;
+	}
+	#chat a:hover {
+	  color: #00b300;
+	}
   </style>
 
   <script>
@@ -56,7 +62,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <a href="/activityfeed">Activity Feed</a>
       <% if (request.getSession().getAttribute("user") != null) { %>
     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	<a href="/myprofile">My Profile</a>
+	<a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
 	<a href="/logout">Logout</a>
     <% } else { %>
       <a href="/login">Login</a>
@@ -79,7 +85,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
         String author = UserStore.getInstance()
           .getUser(message.getAuthorId()).getName();
     %>
-      <li><strong><%= author %>:</strong> <%= message.getContent() %></li>
+      <li><strong><a href="/myprofile?profile_id=<%= author%>"><%= author %>:</a></strong> <%= message.getContent() %></li>
     <%
       }
     %>
@@ -92,7 +98,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <form action="/chat/<%= conversation.getTitle() %>" method="POST">
         <input type="text" name="message" class="form-control">
         <br/>
-        <button type="submit" class="btn btn-primary">Send</button>
+        <button type="submit" class="btn btn-success">Send</button>
     </form>
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>

@@ -67,8 +67,10 @@ public class PersistentDataStore {
         String password = (String)entity.getProperty("password");
         Instant creationTime = Instant.parse((String) entity.getProperty("creation_time"));
         String photo_url = (String)entity.getProperty("photo_url");
-		
-        User user = new User(uuid, userName, password, creationTime, photo_url);
+        String user_skills = (String)entity.getProperty("user_skills");
+        String about = (String)entity.getProperty("about");
+
+        User user = new User(uuid, userName, password, creationTime, photo_url, user_skills, about);
         users.add(user);
       } catch (Exception e) {
         // In a production environment, errors should be very rare. Errors which may
@@ -149,8 +151,8 @@ public class PersistentDataStore {
   }
 
 
-    /** Update the photo_url attribute of User object to the Datastore service. */
-  public void updateThrough(User user, String photo_url)  throws PersistentDataStoreException {
+    /** Update the photo_url,skills and about attributes of User object to the Datastore service. */
+  public void updateThrough(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException {
     // Retrieve all users from the datastore.
     Query query = new Query("chat-users");
     PreparedQuery results = datastore.prepare(query);
@@ -160,6 +162,8 @@ public class PersistentDataStore {
         String userName = (String) entity.getProperty("username");
 	if (userName.equals(user.getName())) {
 		entity.setProperty("photo_url", photo_url);
+		entity.setProperty("user_skills", user_skills);
+		entity.setProperty("about", about);
 		datastore.put(entity);
 		break;
 	}
@@ -181,6 +185,9 @@ public class PersistentDataStore {
     userEntity.setProperty("password", user.getPassword());
     userEntity.setProperty("creation_time", user.getCreationTime().toString());
     userEntity.setProperty("photo_url", user.getPhotoURL());
+    userEntity.setProperty("user_skills", user.getSkills());
+    userEntity.setProperty("about", user.getAbout());
+
     datastore.put(userEntity);
   }
 

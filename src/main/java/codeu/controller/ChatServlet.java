@@ -90,7 +90,7 @@ public class ChatServlet extends HttpServlet {
     Conversation conversation = conversationStore.getConversationWithTitle(conversationTitle);
     if (conversation == null) {
       // couldn't find conversation, redirect to conversation list
-      System.out.println("Conversation was null: " + conversationTitle);
+      //System.out.println("Conversation was null: " + conversationTitle); -testing
       response.sendRedirect("/conversations");
       return;
     }
