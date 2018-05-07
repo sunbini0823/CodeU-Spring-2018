@@ -11,6 +11,14 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
 
+import codeu.model.data.Conversation;
+import codeu.model.store.basic.ConversationStore;
+
+import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class MyProfileServletTest {
 
  private MyProfileServlet myprofileServlet;
@@ -19,6 +27,8 @@ public class MyProfileServletTest {
  private HttpServletResponse mockResponse;
  private RequestDispatcher mockRequestDispatcher;
  private UserStore mockUserStore;
+
+
 
  @Before
  public void setup() throws IOException {
@@ -31,16 +41,16 @@ public class MyProfileServletTest {
 
  @Test
  public void testDoGet() throws IOException, ServletException {
-   myprofileServlet.doGet(mockRequest, mockResponse);
+     myprofileServlet.doGet(mockRequest, mockResponse);
+     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
 
-   Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
  }
  
  @Test
  public void testDoPost() throws IOException, ServletException {
    HttpSession mockSession = Mockito.mock(HttpSession.class);
    Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
-   Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username"); 
+   Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
    Mockito.when(mockRequest.getParameter("photo_url")).thenReturn("test_photo_url");
    Mockito.when(mockRequest.getParameter("user_skills")).thenReturn("test_user_skills");
    Mockito.when(mockRequest.getParameter("about")).thenReturn("test about");
@@ -57,7 +67,7 @@ public class MyProfileServletTest {
      Mockito.verify(mockSession).setAttribute("photo_url", null);
      Mockito.verify(mockResponse).sendRedirect("/myprofile?profile_id=test_username");
 
-   } 
+   }
    else {
      Mockito.verify(mockRequest).setAttribute("error", "Error, please login.");
      Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);

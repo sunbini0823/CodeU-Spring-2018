@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
- <title>My Profile</title>
+ <title> User's Profile</title>
  <link rel="stylesheet" href="/css/main.css">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -92,7 +92,11 @@
  </nav>
 <div class="container">
     <div>
-	   <h1>My Profile</h1>	
+    	<% if (request.getSession().getAttribute("is_self") != null && ((String)request.getSession().getAttribute("is_self")).equals("true")) { %>
+	   	<h1>My profile</h1>	
+	   	<%} else {%>
+	   	<h1><%= request.getAttribute("user") %>'s Profile</h1>
+	   	<%}%>
 	</div>
 	<% if(request.getAttribute("error") != null){ %>
 	<h2 style="color:red"><%= request.getAttribute("error") %></h2>
@@ -174,8 +178,9 @@
 						default:
 							break;
 						}
-					}
+					}	
 			    } %>	
+			   
 			   <% } else { %>
 			   <h5>Username: <%= request.getAttribute("user") %></h5>
 		       <h5>About: <%= request.getAttribute("about")%></h5>		
@@ -233,10 +238,13 @@
 						}
 					}
 			    } %>
-			   <% } %>
-			   
-			   
+			    <button type="submit" class="btn btn-success">
+				<a href="mailto:<%=request.getAttribute("email")%>?Subject=From%20Chat" target="_top">Send Mail</a>
+				</button>
+			
+			<% } %>
 		    </div>
+
 			<% if (request.getSession().getAttribute("is_self") != null && ((String)request.getSession().getAttribute("is_self")).equals("true")) { %>
 		    <div class="tab-pane fade" id="update" role="tabpanel" aria-labelledby="update-tab">
 				<form action="/myprofile" method="POST">

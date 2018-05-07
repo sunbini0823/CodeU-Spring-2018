@@ -15,6 +15,10 @@ import org.mindrot.jbcrypt.BCrypt;
 import codeu.model.data.User;
 import codeu.model.store.basic.UserStore;
 
+import codeu.model.data.Conversation;
+import codeu.model.store.basic.ConversationStore;
+import java.util.List;
+
 /**
 * Servlet class responsible for profile feed.
 */
@@ -22,6 +26,9 @@ public class MyProfileServlet extends HttpServlet {
 
   /** Store class that gives access to Users. */
   private UserStore userStore;
+  /** Store class that gives access to Conversations. */
+  private ConversationStore conversationStore;
+
 
   /**
    * Set up state for handling login-related requests. This method is only called when running in a
@@ -31,6 +38,7 @@ public class MyProfileServlet extends HttpServlet {
   public void init() throws ServletException {
     super.init();
     setUserStore(UserStore.getInstance());
+
   }
 
   /**
@@ -40,12 +48,15 @@ public class MyProfileServlet extends HttpServlet {
   void setUserStore(UserStore userStore) {
     this.userStore = userStore;
   }
+
 	
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response)
    throws IOException, ServletException {
+       
 	   if (request.getSession() != null)
 	     request.getSession().setAttribute("is_self", "false");
+
 	   boolean is_self = false;
 	   if (request.getParameter("profile_id") != null  && request.getParameter("profile_id").length() > 0) {
 		   //System.out.println("profile_id: " + request.getParameter("profile_id"));  -testing
@@ -68,6 +79,7 @@ public class MyProfileServlet extends HttpServlet {
 				request.setAttribute("user_skills", user.getSkills());
 				request.setAttribute("about", user.getAbout());
 				request.getSession().setAttribute("is_self", "false");
+               
 		   } 
 	   }
    
@@ -114,4 +126,5 @@ public class MyProfileServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/view/myprofile.jsp").forward(request, response);
 	}
   }
+    
 }
