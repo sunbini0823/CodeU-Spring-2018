@@ -22,7 +22,7 @@ public class UserStoreTest {
   private final User USER_TWO =
       new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), photo_url, "", "test_about_two");
   private final User USER_THREE =     
-	 new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), photo_url, "", "test_about_three");
+      new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), photo_url, "", "test_about_three");
 
   @Before
   public void setup() {
@@ -78,8 +78,8 @@ public class UserStoreTest {
   public void testUpdateUserPhoto() throws PersistentDataStoreException {
     User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about");
     String photo_url = "http://via.placeholder.com/350x150";
-	String user_skills = "c++, java, js";
-	String about = "About me.";
+    String user_skills = "c++, java, js";
+    String about = "About me.";
     userStore.updateUserPhoto(inputUser, photo_url, user_skills, about);
     User resultUser = userStore.getUser("test_username");
 
@@ -102,8 +102,8 @@ public class UserStoreTest {
     Assert.assertEquals(expectedUser.getName(), actualUser.getName());
     Assert.assertEquals(expectedUser.getPassword(), actualUser.getPassword());
     Assert.assertEquals(expectedUser.getCreationTime(), actualUser.getCreationTime());
-	Assert.assertEquals(expectedUser.getPhotoURL(), actualUser.getPhotoURL());
-	Assert.assertEquals(expectedUser.getSkills(), actualUser.getSkills());
-	Assert.assertEquals(expectedUser.getAbout(), actualUser.getAbout());
+    Assert.assertEquals(expectedUser.getPhotoURL(), actualUser.getPhotoURL());
+    Assert.assertEquals(expectedUser.getSkills(), actualUser.getSkills());
+    Assert.assertEquals(expectedUser.getAbout(), actualUser.getAbout());
   }
 }
