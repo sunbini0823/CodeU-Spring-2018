@@ -40,20 +40,23 @@ public class MyProfileServletTest {
  public void testDoPost() throws IOException, ServletException {
    HttpSession mockSession = Mockito.mock(HttpSession.class);
    Mockito.when(mockRequest.getSession()).thenReturn(mockSession);
-   Mockito.when(mockSession.getAttribute("user")).thenReturn("test username"); 
-   Mockito.when(mockRequest.getParameter("photo_url")).thenReturn("test photo_url");
-   
+   Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username"); 
+   Mockito.when(mockRequest.getParameter("photo_url")).thenReturn("test_photo_url");
+   Mockito.when(mockRequest.getParameter("user_skills")).thenReturn("test_user_skills");
+   Mockito.when(mockRequest.getParameter("about")).thenReturn("test about");
+
    UserStore mockUserStore = Mockito.mock(UserStore.class);
    myprofileServlet.setUserStore(mockUserStore);
    
    User mockUser = Mockito.mock(User.class);
-   Mockito.when(mockUserStore.getUser("test username")).thenReturn(mockUser);
+   Mockito.when(mockUserStore.getUser("test_username")).thenReturn(mockUser);
    myprofileServlet.doPost(mockRequest, mockResponse);
 
    if (mockUser != null){
      String photo_url = "http://via.placeholder.com/350x150";
      Mockito.verify(mockSession).setAttribute("photo_url", null);
-     Mockito.verify(mockResponse).sendRedirect("/myprofile");
+     Mockito.verify(mockResponse).sendRedirect("/myprofile?profile_id=test_username");
+
    } 
    else {
      Mockito.verify(mockRequest).setAttribute("error", "Error, please login.");

@@ -29,9 +29,6 @@
      display: inline-block;
      width: 100px;
    }
-   .container{
-	 padding-top: 50px;
-   }
    .btn{
      width: 100px;
    }
@@ -45,7 +42,7 @@
    <a href="/activityfeed">Activity Feed</a>
    <% if(request.getSession().getAttribute("user") != null){ %>
      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	 <a href="/myprofile">My Profile</a>
+	 <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
 	 <a href="/logout">Logout</a>
    <% } else{ %>
      <a href="/login">Login</a>
@@ -75,7 +72,7 @@
           <input type="password" class="form-control" name="password" id="password">
       </div>
     </div>
-    <button type="submit" class="btn btn-primary center-block">Login</button>
+    <button type="submit" class="btn btn-success center-block">Login</button>
    </form>
  </div>
 </body>

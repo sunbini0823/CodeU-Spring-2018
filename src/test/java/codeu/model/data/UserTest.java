@@ -28,13 +28,17 @@ public class UserTest {
     Instant creation = Instant.now();
     String password = "password";
     String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
+    String user_skills = "test_skills";
+    String about = "test_about";
 	
-    User user = new User(id, name, password, creation, photo_url);
+    User user = new User(id, name, password, creation, photo_url, user_skills, about);
 
     Assert.assertEquals(id, user.getId());
     Assert.assertEquals(name, user.getName());
     Assert.assertEquals(password, user.getPassword());
     Assert.assertEquals(creation, user.getCreationTime());
     Assert.assertEquals(photo_url, user.getPhotoURL());
+    Assert.assertEquals(user_skills, user.getSkills());
+    Assert.assertEquals(about, user.getAbout());
   }
 }

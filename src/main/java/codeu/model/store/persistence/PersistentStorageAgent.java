@@ -90,8 +90,8 @@ public class PersistentStorageAgent {
   }
   
   /** Update the photo_url attribute of User object to the Datastore service. */
-  public void updateThrough(User user, String photo_url)  throws PersistentDataStoreException{
-	persistentDataStore.updateThrough(user, photo_url);
+  public void updateThrough(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException{
+	persistentDataStore.updateThrough(user, photo_url, user_skills, about);
   }
 
   /** Write a User object to the Datastore service. */
