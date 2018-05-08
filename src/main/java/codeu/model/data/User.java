@@ -44,8 +44,8 @@ public class User {
     this.password = password;
     this.creation = creation;
     this.photo_url = photo_url;
-	this.user_skills = user_skills;
-	this.about = about;
+    this.user_skills = user_skills;
+    this.about = about;
   }
 
   /** Returns the ID of this User. */
