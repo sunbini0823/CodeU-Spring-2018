@@ -44,8 +44,8 @@ public class PersistentDataStoreTest {
     Instant creationOne = Instant.ofEpochMilli(1000);
     String photo_urlOne = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
     String user_skillsOne = "skills_one";
-	String aboutOne = "about_one";
-	User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, photo_urlOne, user_skillsOne, aboutOne);
+    String aboutOne = "about_one";
+    User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, photo_urlOne, user_skillsOne, aboutOne);
 
     UUID idTwo = UUID.randomUUID();
     String nameTwo = "test_username_two";
@@ -53,8 +53,8 @@ public class PersistentDataStoreTest {
     Instant creationTwo = Instant.ofEpochMilli(2000);
     String photo_urlTwo = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
     String user_skillsTwo = "skills_two";
-	String aboutTwo = "about_two";    
-	User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, photo_urlTwo, user_skillsTwo, aboutTwo);
+    String aboutTwo = "about_two";    
+    User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, photo_urlTwo, user_skillsTwo, aboutTwo);
 
     // save
     persistentDataStore.writeThrough(inputUserOne);
@@ -70,8 +70,8 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(passwordOne, resultUserOne.getPassword());
     Assert.assertEquals(creationOne, resultUserOne.getCreationTime());
     Assert.assertEquals(photo_urlOne, resultUserOne.getPhotoURL());
-	Assert.assertEquals(user_skillsOne, resultUserOne.getSkills());
-	Assert.assertEquals(aboutOne, resultUserOne.getAbout());
+    Assert.assertEquals(user_skillsOne, resultUserOne.getSkills());
+    Assert.assertEquals(aboutOne, resultUserOne.getAbout());
 
 
     User resultUserTwo = resultUsers.get(1);
@@ -81,7 +81,7 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
     Assert.assertEquals(photo_urlTwo, resultUserTwo.getPhotoURL());
     Assert.assertEquals(user_skillsTwo, resultUserTwo.getSkills());
-	Assert.assertEquals(aboutTwo, resultUserTwo.getAbout());
+    Assert.assertEquals(aboutTwo, resultUserTwo.getAbout());
   }
 
   @Test
