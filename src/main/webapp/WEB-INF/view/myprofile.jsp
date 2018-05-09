@@ -238,9 +238,8 @@
 				}
 			    } %>
 
-			    <button type="submit" class="btn btn-success">
-				<a href="mailto:<%=request.getAttribute("email")%>?Subject=From%20Chat" target="_top">Send Mail</a>
-				</button>
+			    
+				<a href="mailto:<%=request.getAttribute("email")%>?Subject=From%20Chat" target="_top"><button type="submit" class="btn btn-success">Send Mail</button></a>
 			
 			<% } %>
 		    </div>
