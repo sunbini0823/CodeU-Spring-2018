@@ -177,26 +177,26 @@ public class DefaultDataStore {
   private List<String> getRandomSkills() {
     List<String> randomSkills = new ArrayList<>();
     randomSkills.add("python,react");
-	randomSkills.add("html,js,angular");
+    randomSkills.add("html,js,angular");
     randomSkills.add("js");
     randomSkills.add("perl");
-	randomSkills.add("css");
+    randomSkills.add("css");
     randomSkills.add("python,c++");
-	randomSkills.add("html,css");
+    randomSkills.add("html,css");
     randomSkills.add("js");
     randomSkills.add("perl,java");
-	randomSkills.add("css,angular");
-	randomSkills.add("python,react");
-	randomSkills.add("html,js,angular");
+    randomSkills.add("css,angular");
+    randomSkills.add("python,react");
+    randomSkills.add("html,js,angular");
     randomSkills.add("js");
     randomSkills.add("perl");
-	randomSkills.add("css");
+    randomSkills.add("css");
     randomSkills.add("python,c++");
-	randomSkills.add("html,css");
+    randomSkills.add("html,css");
     randomSkills.add("js");
     randomSkills.add("perl,java");
-	randomSkills.add("css,angular");
-	return randomSkills;
+    randomSkills.add("css,angular");
+    return randomSkills;
   }
   
   private String getRandomMessageContent() {

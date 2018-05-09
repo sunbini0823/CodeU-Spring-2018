@@ -72,8 +72,8 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(passwordOne, resultUserOne.getPassword());
     Assert.assertEquals(creationOne, resultUserOne.getCreationTime());
     Assert.assertEquals(photo_urlOne, resultUserOne.getPhotoURL());
-	Assert.assertEquals(user_skillsOne, resultUserOne.getSkills());
-	Assert.assertEquals(aboutOne, resultUserOne.getAbout());
+    Assert.assertEquals(user_skillsOne, resultUserOne.getSkills());
+    Assert.assertEquals(aboutOne, resultUserOne.getAbout());
 
 
     User resultUserTwo = resultUsers.get(1);
@@ -83,7 +83,7 @@ public class PersistentDataStoreTest {
     Assert.assertEquals(creationTwo, resultUserTwo.getCreationTime());
     Assert.assertEquals(photo_urlTwo, resultUserTwo.getPhotoURL());
     Assert.assertEquals(user_skillsTwo, resultUserTwo.getSkills());
-	Assert.assertEquals(aboutTwo, resultUserTwo.getAbout());
+    Assert.assertEquals(aboutTwo, resultUserTwo.getAbout());
   }
 
   @Test

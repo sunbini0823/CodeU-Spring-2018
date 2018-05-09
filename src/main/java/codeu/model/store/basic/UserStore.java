@@ -113,12 +113,12 @@ public class UserStore {
   public void updateUserPhoto(User user, String photo_url, String user_skills, String about)  throws PersistentDataStoreException {
   for (int i = 0; i < users.size(); i++) {
       if (users.get(i).getId().equals(user.getId())) {
-		User temp = users.get(i);
-		temp.setPhotoURL(photo_url);
-		temp.setSkills(user_skills);
-		temp.setAbout(about);
+	User temp = users.get(i);
+	temp.setPhotoURL(photo_url);
+	temp.setSkills(user_skills);
+	temp.setAbout(about);
         users.set(i, temp);
-		break;
+	break;
       }
     }
       persistentStorageAgent.updateThrough(user, photo_url, user_skills, about);

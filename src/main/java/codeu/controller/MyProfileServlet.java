@@ -108,7 +108,7 @@ public class MyProfileServlet extends HttpServlet {
 	String user_skills = String.join(",", my_skills);
 
 	if (user != null) {
-		user.setPhotoURL(photo_url);
+	    user.setPhotoURL(photo_url);
 	    user.setSkills(user_skills);
 	    user.setAbout(about);
 	    try {
@@ -123,7 +123,7 @@ public class MyProfileServlet extends HttpServlet {
         response.sendRedirect("/myprofile?profile_id=" + (String)request.getSession().getAttribute("user"));
         }
 	else {  //user object not found - if not logged in, can't change the picture
-		request.setAttribute("error", "Error, please login.");
+	request.setAttribute("error", "Error, please login.");
         request.getRequestDispatcher("/WEB-INF/view/myprofile.jsp").forward(request, response);
 	}
   }
