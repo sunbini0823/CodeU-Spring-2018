@@ -25,69 +25,62 @@
 <body>
 
   <nav>
-    <a id="navTitle" href="/">CodeU Chat App</a>
-    <a href="/conversations">Conversations</a>
-    <a href="/activityfeed">Activity Feed</a>
-    <% if(request.getSession().getAttribute("user") != null){ %>
-      <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	  <a href="/myprofile">My Profile</a>
-    <% } else{ %>
-      <a href="/login">Login</a>
-	  <a href="/register">Register</a>
-    <% } %>
-    <a href="/about.jsp">About</a>
+   <a id="navTitle" href="/">CodeU Chat App</a>   
+   <% if(request.getSession().getAttribute("user") != null){ %>
+     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
+	 <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
+	 <a href="/activityfeed">Activity Feed</a>
+	 <a href="/logout">Logout</a>
+   <% } else{ %>
+     <a href="/login">Login</a>
+     <a href="/register">Register</a>
+   <% } %>
+	 <a href="/conversations">Conversations</a>
+     <a href="/about.jsp">About</a>
   </nav>
 
-  <div id="container">
-
-
-    <h1>Activity Feed</h1>
-	<hr/>
-
+  <div class="container">
+	<h1>Activity Feed</h1>
 	<h3>Conversation Activity</h3>
-    <%
-    List<String> conversationActivity = (List<String>) request.getAttribute("conversationActivity");
+	<%
+	List<String> conversationActivity = (List<String>) request.getAttribute("conversationActivity");
 	%>
-      <ul class="mdl-list">
-    <%
-      for(String ca : conversationActivity){
-    %>
-      <li><%=ca %></li>
-    <%
-      }
-    %>
-      </ul>
-
-
-    <h3>Message Activity</h3>
-    <%
-    List<String> messageActivity = (List<String>) request.getAttribute("messageActivity");
+	  <ul class="mdl-list">
+	<%
+	  for(String ca : conversationActivity){
 	%>
-      <ul class="mdl-list">
-    <%
-      for(String ma : messageActivity){
-    %>
-      <li><%=ma %></li>
-    <%
-      }
-    %>
-      </ul>
-
-    <h3>User Activity</h3>
-    <%
-    List<String> userActivity = (List<String>) request.getAttribute("userActivity");
+	  <li><%=ca %></li>
+	<%
+	  }
 	%>
-      <ul class="mdl-list">
-    <%
-      for(String ua : userActivity){
-    %>
-      <li><%=ua %></li>
-    <%
-      }
-    %>
-      </ul>
+	  </ul>	 
+	 <h3>Message Activity</h3>
+	<%
+	List<String> messageActivity = (List<String>) request.getAttribute("messageActivity");
+	%>
+	  <ul class="mdl-list">
+	<%
+	  for(String ma : messageActivity){
+	%>
+	  <li><%=ma %></li>
+	<%
+	  }
+	%>
+	  </ul>
 
-
+	<h3>User Activity</h3>
+	<%
+	List<String> userActivity = (List<String>) request.getAttribute("userActivity");
+	%>
+	  <ul class="mdl-list">
+	<%
+	  for(String ua : userActivity){
+	%>
+	  <li><%=ua %></li>
+	<%
+	  }
+	%>
+	  </ul>		  
   </div>
 </body>
 </html>
