@@ -30,8 +30,9 @@ public class UserTest {
     String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
 	String user_skills = "test_skills";
 	String about = "test_about";
+    String email = "test_email";
 	
-    User user = new User(id, name, password, creation, photo_url, user_skills, about);
+    User user = new User(id, name, password, creation, photo_url, user_skills, about, email);
 
     Assert.assertEquals(id, user.getId());
     Assert.assertEquals(name, user.getName());

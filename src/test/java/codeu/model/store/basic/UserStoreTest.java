@@ -19,11 +19,11 @@ public class UserStoreTest {
   private PersistentStorageAgent mockPersistentStorageAgent;
   private String photo_url = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
   private final User USER_ONE =
-      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000), photo_url, "", "test_about_one");
+      new User(UUID.randomUUID(), "test_username_one", "password one", Instant.ofEpochMilli(1000), photo_url, "", "test_about_one", "test_email_one");
   private final User USER_TWO =
-      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), photo_url, "", "test_about_two");
+      new User(UUID.randomUUID(), "test_username_two", "password two", Instant.ofEpochMilli(2000), photo_url, "", "test_about_two", "test_email_two");
   private final User USER_THREE =     
-	 new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), photo_url, "", "test_about_three");
+	 new User(UUID.randomUUID(), "test_username_three", "password three", Instant.ofEpochMilli(3000), photo_url, "", "test_about_three", "test_email_three");
 
   @Before
   public void setup() {
@@ -67,7 +67,7 @@ public class UserStoreTest {
 
   @Test
   public void testAddUser() {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about");
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about", "test_email");
 
     userStore.addUser(inputUser);
     User resultUser = userStore.getUser("test_username");
@@ -77,7 +77,7 @@ public class UserStoreTest {
   }
 
   public void testUpdateUserPhoto() throws PersistentDataStoreException {
-    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about");
+    User inputUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(), photo_url, "", "test_about","test_email");
     String photo_url = "http://via.placeholder.com/350x150";
 	String user_skills = "c++, java, js";
 	String about = "About me.";

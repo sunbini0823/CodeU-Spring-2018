@@ -45,7 +45,8 @@ public class PersistentDataStoreTest {
     String photo_urlOne = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
     String user_skillsOne = "skills_one";
 	String aboutOne = "about_one";
-	User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, photo_urlOne, user_skillsOne, aboutOne);
+    String emailOne = "one@gmail.com";
+	User inputUserOne = new User(idOne, nameOne, passwordOne, creationOne, photo_urlOne, user_skillsOne, aboutOne, emailOne);
 
     UUID idTwo = UUID.randomUUID();
     String nameTwo = "test_username_two";
@@ -53,8 +54,9 @@ public class PersistentDataStoreTest {
     Instant creationTwo = Instant.ofEpochMilli(2000);
     String photo_urlTwo = "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100";
     String user_skillsTwo = "skills_two";
-	String aboutTwo = "about_two";    
-	User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, photo_urlTwo, user_skillsTwo, aboutTwo);
+	String aboutTwo = "about_two";
+    String emailTwo = "one@gmail.com";
+	User inputUserTwo = new User(idTwo, nameTwo, passwordTwo, creationTwo, photo_urlTwo, user_skillsTwo, aboutTwo, emailTwo);
 
     // save
     persistentDataStore.writeThrough(inputUserOne);

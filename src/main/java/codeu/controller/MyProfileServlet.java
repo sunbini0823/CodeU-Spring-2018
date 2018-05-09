@@ -78,6 +78,7 @@ public class MyProfileServlet extends HttpServlet {
 				request.setAttribute("photo_url", user.getPhotoURL());
 				request.setAttribute("user_skills", user.getSkills());
 				request.setAttribute("about", user.getAbout());
+                request.setAttribute("email", user.getEmail());
 				request.getSession().setAttribute("is_self", "false");
                
 		   } 
