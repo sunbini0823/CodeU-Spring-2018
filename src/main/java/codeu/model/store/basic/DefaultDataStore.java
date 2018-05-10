@@ -101,10 +101,11 @@ public class DefaultDataStore {
     Collections.shuffle(randomUsernames);
     List<String> randomSkills= getRandomSkills();
     Collections.shuffle(randomSkills);
+    String email = getRandomEmails();
 	
     for (int i = 0; i < DEFAULT_USER_COUNT; i++) {
       User user = new User(UUID.randomUUID(), randomUsernames.get(i), BCrypt.hashpw("password", BCrypt.gensalt()), Instant.now(),
-	  "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100", randomSkills.get(i), "random about");
+	  "https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100", randomSkills.get(i), "random about", email);
       PersistentStorageAgent.getInstance().writeThrough(user);
       users.add(user);
     }
@@ -212,5 +213,10 @@ public class DefaultDataStore {
     String messageContent = loremIpsum.substring(startIndex, endIndex).trim();
 
     return messageContent;
+  }
+    
+  private String getRandomEmails() {
+      String randomEmail = getRandomMessageContent() + "@gmail.com";
+      return randomEmail;
   }
 }

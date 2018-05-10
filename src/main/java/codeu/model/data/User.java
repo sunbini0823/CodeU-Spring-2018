@@ -26,6 +26,7 @@ public class User {
   private String photo_url;
   private String user_skills;
   private String about;
+  private String email;
 
   /**
    * Constructs a new User.
@@ -38,14 +39,15 @@ public class User {
    * @param user_skills the programming skills of this User
    * @param about the about of this User
    */
-  public User(UUID id, String name, String password, Instant creation, String photo_url, String user_skills, String about) {
+  public User(UUID id, String name, String password, Instant creation, String photo_url, String user_skills, String about, String email) {
     this.id = id;
     this.name = name;
     this.password = password;
     this.creation = creation;
     this.photo_url = photo_url;
-    this.user_skills = user_skills;
-    this.about = about;
+	this.user_skills = user_skills;
+	this.about = about;
+    this.email = email;
   }
 
   /** Returns the ID of this User. */
@@ -57,6 +59,15 @@ public class User {
   public String getName() {
     return name;
   }
+
+  /** Returns the email of this User. */
+  public String getEmail() {
+    return email;
+  }
+  /** Updates the skills of this User. */
+  public void setEmail(String user_email) {
+    this.email = user_email;
+}
     
   /** Returns the password of this User. */
   public String getPassword() {

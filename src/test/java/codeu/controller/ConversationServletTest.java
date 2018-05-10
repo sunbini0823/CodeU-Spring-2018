@@ -107,7 +107,7 @@ public class ConversationServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about", "test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     conversationServlet.doPost(mockRequest, mockResponse);
@@ -125,7 +125,7 @@ public class ConversationServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about", "test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.isTitleTaken("test_conversation")).thenReturn(true);
@@ -144,7 +144,7 @@ public class ConversationServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about", "test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.isTitleTaken("test_conversation")).thenReturn(false);

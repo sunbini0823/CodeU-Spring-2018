@@ -137,7 +137,7 @@ public class ChatServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about", "test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Mockito.when(mockConversationStore.getConversationWithTitle("test_conversation"))
@@ -156,7 +156,7 @@ public class ChatServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about","test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
@@ -165,6 +165,7 @@ public class ChatServletTest {
         .thenReturn(fakeConversation);
 
     Mockito.when(mockRequest.getParameter("message")).thenReturn("Test message.");
+    
 
     chatServlet.doPost(mockRequest, mockResponse);
 
@@ -182,7 +183,7 @@ public class ChatServletTest {
 
     User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
 	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
-	"test_skills","test_about");
+	"test_skills","test_about","test_email");
     Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
 
     Conversation fakeConversation =
