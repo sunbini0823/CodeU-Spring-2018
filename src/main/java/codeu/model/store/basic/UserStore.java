@@ -71,6 +71,11 @@ public class UserStore {
     users.addAll(DefaultDataStore.getInstance().getAllUsers());
   }
 
+  /** Access the current set of users known to the application. */
+  public List<User> getAllUsers() {
+    return users;
+  }
+  
   /**
    * Access the User object with the given name.
    *

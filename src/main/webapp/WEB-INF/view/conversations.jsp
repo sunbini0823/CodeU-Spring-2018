@@ -15,6 +15,7 @@
 --%>
 <%@ page import="java.util.List" %>
 <%@ page import="codeu.model.data.Conversation" %>
+<%@ page import="codeu.model.data.User" %>
 
 <!DOCTYPE html>
 <html>
@@ -64,33 +65,62 @@
 
       <hr/>
     <% } %>
-
-    <h1>Conversations</h1>
-
-    <%
-    List<Conversation> conversations =
-      (List<Conversation>) request.getAttribute("conversations");
-    if(conversations == null || conversations.isEmpty()){
-    %>
-      <p>Create a conversation to get started.</p>
-    <%
-    }
-    else{
-    %>
-      <ul class="mdl-list">
-    <%
-      for(Conversation conversation : conversations){
-    %>
-      <li><a href="/chat/<%= conversation.getTitle() %>">
-        <%= conversation.getTitle() %></a></li>
-    <%
-      }
-    %>
-      </ul>
-    <%
-    }
-    %>
-    <hr/>
+	<div class="row justify-content-center">
+	    <div class="col-6">
+			<h1>Conversations</h1>
+			<%
+			List<Conversation> conversations =
+			  (List<Conversation>) request.getAttribute("conversations");
+			if(conversations == null || conversations.isEmpty()){
+			%>
+			  <p>Create a conversation to get started.</p>
+			<%
+			}
+			else{
+			%>
+			  <ul class="mdl-list">
+			<%
+			  for(Conversation conversation : conversations){
+			%>
+			  <li><a href="/chat/<%= conversation.getTitle() %>">
+				<%= conversation.getTitle() %></a></li>
+			<%
+			  }
+			%>
+			  </ul>
+			<%
+			}
+			%>
+	    </div>
+	    <div class="col-6">
+			<h1>Users</h1>
+			<% if(request.getSession().getAttribute("user") != null){ %>
+				<%
+				List<User> users =
+				  (List<User>) request.getAttribute("users");
+				%>
+				<ul class="mdl-list">
+				<%
+				  if (request.getAttribute("users") != null) {
+					for(User user : users){
+					%>
+					  <li><a href="/myprofile?profile_id=<%= user.getName() %>">
+						<%= user.getName() %></a><% if (user.getSkills() != null) { %>
+						<p>Skills : <%= user.getSkills() %></p>
+						<%} else { %>
+						<p> no skills specified</p>
+						<% } %>
+						</li>
+					<%
+					}
+				}
+				%>
+				</ul>
+			<% } else { %>
+				<p>Please <a href="/login">Login</a> to view other users' profiles!</p>
+			<% } %>
+	    </div>
+	</div>	
   </div>
 </body>
 </html>
