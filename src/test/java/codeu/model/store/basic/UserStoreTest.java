@@ -64,6 +64,20 @@ public class UserStoreTest {
 
     Assert.assertNull(resultUser);
   }
+  
+  @Test
+  public void testGetRecentUsers() {
+	User inputUser = new User(UUID.randomUUID(), "test_username", "password", Instant.now(), photo_url, "", "test_about");
+	User oldUser = new User(UUID.randomUUID(), "old_user", "pwd", Instant.parse("1998-10-21T10:12:35Z"), photo_url, "", "test_about");
+	
+	userStore.addUser(inputUser);
+	userStore.addUser(oldUser);
+	
+    List<User> resultUsers = userStore.getRecentUsers();
+
+    assertEquals(inputUser, resultUsers.get(0));
+    Assert.assertEquals(1, resultUsers.size());
+  }
 
   @Test
   public void testAddUser() {
