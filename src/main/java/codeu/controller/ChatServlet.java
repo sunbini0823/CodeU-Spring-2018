@@ -139,7 +139,7 @@ public class ChatServlet extends HttpServlet {
     }
 
     String messageContent = request.getParameter("message");
-
+          
     // this removes any HTML from the message content
     String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
 
@@ -152,6 +152,20 @@ public class ChatServlet extends HttpServlet {
             Instant.now());
 
     messageStore.addMessage(message);
+        
+    if (cleanedMessageContent == "chatbot" || cleanedMessageContent == "Chatbot" || cleanedMessageContent == "chat bot" || cleanedMessageContent == "chatBot" || cleanedMessageContent == "ChatBot"|| cleanedMessageContent == "Chat bot" || cleanedMessageContent == "chat Bot" || cleanedMessageContent == "Chat Bot") {
+        
+        
+        Message messageBot =
+            new Message(
+                    UUID.randomUUID(),
+                    conversation.getId(),
+                    user.getId(),
+                    "http://www.google.com/search?" + cleanedMessageContent,
+                    Instant.now());
+        
+        messageStore.addMessage(messageBot);
+    }
 
     // redirect to a GET request
     response.sendRedirect("/chat/" + conversationTitle);
