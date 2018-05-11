@@ -65,17 +65,20 @@
 
   <div class="container">
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
-
+    
+      <h1 style="font-size: 18px; color: #F78888">
+      Join us for Lovelacers.git tour!
+      <br />
+      </h1>
       <ul>
 	  	<% if(request.getSession().getAttribute("user") == null){ %>
-			<li><a href="/login">Login</a> to get started.</li>
-		<% } %>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-        <!--<li>You can <a href="/testdata">load test data</a> to fill the site with
-            example data.</li> -->
+      <li> <a href="/register">Register</a> with unique username, email, and password!</li>
+      <li> <a href="/login">Login</a> with unique username, email, and password!</li>
+      <% } %>
+        <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
+      <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
+      <li> Check out other user's profile page and email them!</li>
+      <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
       </ul>
   </div>
 </body>
