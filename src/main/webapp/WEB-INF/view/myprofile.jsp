@@ -47,9 +47,6 @@
 	 color: black;
 	 font-weight: 700;
    }
-   .nav-item a:hover{
-	 background-color: #014308;
-   }
    .tab-content #profile label {
 	 font-size: 30px;
 	 padding-right: 10px;
@@ -91,19 +88,41 @@
 </head>
 <body>
 
-  <nav>
-   <a id="navTitle" href="/">CodeU Chat App</a>   
-   <% if(request.getSession().getAttribute("user") != null){ %>
-     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	 <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
-	 <a href="/activityfeed">Activity Feed</a>
-	 <a href="/logout">Logout</a>
-   <% } else{ %>
-     <a href="/login">Login</a>
-     <a href="/register">Register</a>
-   <% } %>
-	 <a href="/conversations">Conversations</a>
-     <a href="/about.jsp">About</a>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+	<% if(request.getSession().getAttribute("user") != null){ %>
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
+		Hello <%= request.getSession().getAttribute("user") %>!</a>
+	<% } %>		
+	<div class="collapse navbar-collapse text-center" id="navbar">
+	<ul class="navbar-nav text-left">
+		<li class="nav-item" routerLinkActive="active">
+          <a id="navTitle" href="/">Lovelacers.git</a>
+        </li>
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			style="margin-top: 28px;">My Profile</a>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	
+		<% } else{ %>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/login" style="margin-top: 28px;">Login</a></li>	
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/register" style="margin-top: 28px;">Register</a></li>	
+		<% } %>
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/conversations" style="margin-top: 28px;">Conversations</a></li>	
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/about.jsp" style="margin-top: 28px;">About</a></li>	
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/logout" style="margin-top: 28px;">Logout</a></li>
+		<% } %>		
+	</ul>
+    <div>
   </nav>
 
 <div class="container">
