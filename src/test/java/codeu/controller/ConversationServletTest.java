@@ -114,10 +114,28 @@ public class ConversationServletTest {
 
     Mockito.verify(mockConversationStore, Mockito.never())
         .addConversation(Mockito.any(Conversation.class));
-    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters and numbers.");
+    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters, numbers, and spaces.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 
+  @Test
+  public void testDoPost_LongConversationName() throws IOException, ServletException {
+    Mockito.when(mockRequest.getParameter("conversationTitle")).thenReturn("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    Mockito.when(mockSession.getAttribute("user")).thenReturn("test_username");
+
+    User fakeUser = new User(UUID.randomUUID(), "test_username", "test_password", Instant.now(),
+	"https://i1.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?resize=256%2C256&quality=100",
+	"test_skills","test_about", "test_email");
+    Mockito.when(mockUserStore.getUser("test_username")).thenReturn(fakeUser);
+
+    conversationServlet.doPost(mockRequest, mockResponse);
+
+    Mockito.verify(mockConversationStore, Mockito.never())
+        .addConversation(Mockito.any(Conversation.class));
+    Mockito.verify(mockRequest).setAttribute("error", "Please enter a conversation title fewer than 30 characters.");
+    Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
+  }
+  
   @Test
   public void testDoPost_ConversationNameTaken() throws IOException, ServletException {
     Mockito.when(mockRequest.getParameter("conversationTitle")).thenReturn("test_conversation");

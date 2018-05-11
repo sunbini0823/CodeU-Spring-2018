@@ -14,18 +14,22 @@
 
 package codeu.controller;
 
-import codeu.model.data.Conversation;
-import codeu.model.data.User;
-import codeu.model.store.basic.ConversationStore;
-import codeu.model.store.basic.UserStore;
 import java.io.IOException;
 import java.time.Instant;
 import java.util.List;
 import java.util.UUID;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import codeu.model.data.Conversation;
+import codeu.model.data.User;
+import codeu.model.store.basic.ConversationStore;
+import codeu.model.store.basic.UserStore;
 
 /** Servlet class responsible for the conversations page. */
 public class ConversationServlet extends HttpServlet {
@@ -100,10 +104,22 @@ public class ConversationServlet extends HttpServlet {
       response.sendRedirect("/conversations");
       return;
     }
-
+    
     String conversationTitle = request.getParameter("conversationTitle");
-    if (!conversationTitle.matches("[\\w*]*")) {
-      request.setAttribute("error", "Please enter only letters and numbers.");
+    
+    String regex = "[a-zA-Z. _!?]+";
+    Pattern pattern = Pattern.compile(regex);
+
+    Matcher m = pattern.matcher(conversationTitle);
+    
+    if (!m.matches()) {
+      request.setAttribute("error", "Please enter only letters, numbers, and spaces.");
+      request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
+      return;
+    }
+    
+    if (conversationTitle.length() > 30) {
+      request.setAttribute("error", "Please enter a conversation title fewer than 30 characters.");
       request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
       return;
     }
