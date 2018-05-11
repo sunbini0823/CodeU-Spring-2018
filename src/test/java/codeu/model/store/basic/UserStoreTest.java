@@ -67,8 +67,8 @@ public class UserStoreTest {
   
   @Test
   public void testGetRecentUsers() {
-	User inputUser = new User(UUID.randomUUID(), "test_username", "password", Instant.now(), photo_url, "", "test_about");
-	User oldUser = new User(UUID.randomUUID(), "old_user", "pwd", Instant.parse("1998-10-21T10:12:35Z"), photo_url, "", "test_about");
+	User inputUser = new User(UUID.randomUUID(), "test_username", "password", Instant.now(), photo_url, "", "test_about", "");
+	User oldUser = new User(UUID.randomUUID(), "old_user", "pwd", Instant.parse("1998-10-21T10:12:35Z"), photo_url, "", "test_about", "");
 	
 	userStore.addUser(inputUser);
 	userStore.addUser(oldUser);
