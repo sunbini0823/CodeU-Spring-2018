@@ -49,7 +49,6 @@
       Join us for Lovelacers.git tour!
       <br />
       </h1>
-      <h1 style="font-size: 15px; color: white">
       <ul>
       <li> <a href="/register">Register</a> with unique username, email, and password!</li>
       <li> <a href="/login">Login</a> with unique username, email, and password!</li>
@@ -59,7 +58,6 @@
       <li>View the <a href="/about.jsp">about</a> page to learn more about the
             project.</li>
       </ul>
-      </h1>
 
   </div>
 </body>

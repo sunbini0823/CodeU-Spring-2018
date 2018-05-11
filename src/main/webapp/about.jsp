@@ -168,6 +168,7 @@
       This requires users to sign up with an email. Each user has their own profile and they are able to change the profile picture, about message, and add languages they are proficient in.
       This feature allows users to connect to each other easily to ask questions or share knowledge. Lastly, there is an activity feed where users can see what other users are doing in the app.
       </h1>
+    </div>
   </div>
 </body>
 </html>
