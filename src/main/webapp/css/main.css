@@ -52,6 +52,7 @@ nav a {
   font-size: 24px;
   margin: 15px;
   text-decoration: none !important;
+  vertical-align: baseline;
 }
 nav a:hover {
   color: #b3ffb3;
