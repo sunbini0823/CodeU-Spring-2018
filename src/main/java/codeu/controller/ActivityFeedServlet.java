@@ -102,9 +102,12 @@ public class ActivityFeedServlet extends HttpServlet {
 	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
 	      User creator = userStore.getUser(conversation.getOwnerId());
-	      conversationActivity.add(time + creator.getName() + " created a new conversation: " + conversation.getTitle());
+	      String userlink = "<a href=\"/myprofile?profile_id=" + creator.getName() + "\">" + creator.getName() + "</a>";
+	      String convlink = "<a href=\"/chat/" + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
+	      conversationActivity.add(time + userlink + " created a new conversation: " + convlink);
 	    }
     }
+    
     
 
     List<String> messageActivity = new ArrayList<String>();
@@ -119,9 +122,12 @@ public class ActivityFeedServlet extends HttpServlet {
 	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
 	      User creator = userStore.getUser(message.getAuthorId());
+	      String userlink = "<a href=\"/myprofile?profile_id=" + creator.getName() + "\">" + creator.getName() + "</a>";
+	      
 	      Conversation conversation = conversationStore.getConversationWithUUID(message.getConversationId());
+	      String convlink = "<a href=\"/chat/" + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
 
-	      messageActivity.add(time + creator.getName() + " sent a message in " + conversation.getTitle() + ": \"" + message.getContent() + "\"");
+	      messageActivity.add(time + userlink + " said in " + convlink + ": \"" + message.getContent() + "\"");
 	    }
     }
     
@@ -136,8 +142,8 @@ public class ActivityFeedServlet extends HttpServlet {
     	for (User user : userList) {
   	      LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
   	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
-
-  	      userActivity.add(time + user.getName() + " joined!");
+  	      String userlink = "<a href=\"/myprofile?profile_id=" + user.getName() + "\">" + user.getName() + "</a>";
+  	      userActivity.add(time + userlink + " joined!");
   	    }
     }
     
