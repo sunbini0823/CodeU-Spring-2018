@@ -26,7 +26,6 @@
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
   
   <style>
-
     #add{
       font-size: 18px;
       width: 60%;
@@ -35,7 +34,6 @@
       font-family: 'Cabin', Helvetica, Arial, sans-serif;
     }
     .name{
-      
       color: black;
       text-align: center;
       padding-top: 10px;
@@ -59,15 +57,12 @@
     .n1{
       background-color: #ECECEC; color: black;
     }
-
     .n2{
         background-color: #90CCF4; color: black;
     }
-
     .n3{
       background-color: #1789E8; color: black;
     }
-
     .n4{
       background-color: #B3D7F0; color: black;
     }
@@ -80,19 +75,41 @@
   </style>
 </head>
 <body>
-  <nav>
-   <a id="navTitle" href="/">CodeU Chat App</a>   
-   <% if(request.getSession().getAttribute("user") != null){ %>
-     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	 <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
-	 <a href="/activityfeed">Activity Feed</a>
-	 <a href="/logout">Logout</a>
-   <% } else{ %>
-     <a href="/login">Login</a>
-     <a href="/register">Register</a>
-   <% } %>
-	 <a href="/conversations">Conversations</a>
-     <a href="/about.jsp">About</a>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+	<% if(request.getSession().getAttribute("user") != null){ %>
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
+		Hello <%= request.getSession().getAttribute("user") %>!</a>
+	<% } %>		
+	<div class="collapse navbar-collapse text-center" id="navbar">
+	<ul class="navbar-nav text-left">
+		<li class="nav-item" routerLinkActive="active">
+          <a id="navTitle" href="/" style="margin-top:24px;">Lovelacers.git</a>
+        </li>
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			style="margin-top: 28px;">My Profile</a>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	
+		<% } else{ %>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/login" style="margin-top: 28px;">Login</a></li>	
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/register" style="margin-top: 28px;">Register</a></li>	
+		<% } %>
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/conversations" style="margin-top: 28px;">Conversations</a></li>	
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/about.jsp" style="margin-top: 28px;">About</a></li>	
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/logout" style="margin-top: 28px;">Logout</a></li>
+		<% } %>		
+	</ul>
+    <div>
   </nav>
    
  <div class="container">
@@ -102,7 +119,7 @@
 
     <div class="row justify-content-center text-center">
 	  <div class="col-2">
-        <img src="https://lh4.googleusercontent.com/-MpFXB1m7qPQ/AAAAAAAAAAI/AAAAAAAAATw/z5JAJJ1iJ9w/s64/photo.jpg" alt="Aditi" class="rounded img-fluid" width="120" height="120"/> 
+        <img src="https://thumb.ibb.co/irM5Ad/13495061_10154522802686756_8562385856548975463_n.jpg" alt="Aditi" class="rounded img-fluid" width="150" height="150"/> 
 	  </div>
 	  <div class="col-2">
         <img src="https://scontent.fsnc1-1.fna.fbcdn.net/v/t1.0-9/29791847_1915226268529605_3315042041827335933_n.jpg?_nc_cat=0&oh=d87fd1c7a791551c0aeece29203d48c7&oe=5B56FBA3" alt="Anujin" class="rounded img-fluid" width="150" height="150"/> 
@@ -114,7 +131,7 @@
         <img src="https://scontent.fsnc1-1.fna.fbcdn.net/v/t1.0-9/13423851_1125291940855328_8717554326577718503_n.jpg?_nc_cat=0&oh=28506dbed6670def52f672ca4cb531bc&oe=5B6B1994" alt="Sunbin" class="rounded img-fluid" width="150" height="150"/> 
 	  </div>
 	  <div class="col-2">
-        <img src="https://scontent-sea1-1.xx.fbcdn.net/v/t1.0-9/15781765_1235894409791591_7251308027829391949_n.jpg?_nc_cat=0&oh=010a20d68d738c11dfcfce3273e97dee&oe=5B92F249" alt="Sophie" class="rounded img-fluid" width="150" height="120"/>  
+        <img src="https://thumb.ibb.co/hTth6J/imageedit_9763199795.jpg" alt="Sophie" class="rounded img-fluid" width="150" height="120"/>  
 	  </div>
 	</div>
 	<div class="row justify-content-center">
@@ -162,7 +179,12 @@
       }
 
     </script>
-
+    <h1 style="font-size: 15px; color: white">
+      Lovelacers.git is a chat app for computer science major college students to use! The theme of the chat app is similar to the default terminal color scheme: black and green.
+      The users are able to join any conversation and click the name of other users to go to their profile page and email them directly if they want to.
+      This requires users to sign up with an email. Each user has their own profile and they are able to change the profile picture, about message, and add languages they are proficient in.
+      This feature allows users to connect to each other easily to ask questions or share knowledge. Lastly, there is an activity feed where users can see what other users are doing in the app.
+      </h1>
     </div>
   </div>
 </body>

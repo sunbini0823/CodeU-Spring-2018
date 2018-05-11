@@ -26,33 +26,59 @@
 </head>
 <body>
 
-  <nav>
-   <a id="navTitle" href="/">CodeU Chat App</a>   
-   <% if(request.getSession().getAttribute("user") != null){ %>
-     <a>Hello <%= request.getSession().getAttribute("user") %>!</a>
-	 <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a>
-	 <a href="/activityfeed">Activity Feed</a>
-	 <a href="/logout">Logout</a>
-   <% } else{ %>
-     <a href="/login">Login</a>
-     <a href="/register">Register</a>
-   <% } %>
-	 <a href="/conversations">Conversations</a>
-     <a href="/about.jsp">About</a>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+	<% if(request.getSession().getAttribute("user") != null){ %>
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
+		Hello <%= request.getSession().getAttribute("user") %>!</a>
+	<% } %>		
+	<div class="collapse navbar-collapse text-center" id="navbar">
+	<ul class="navbar-nav text-left">
+		<li class="nav-item" routerLinkActive="active">
+          <a id="navTitle" href="/">Lovelacers.git</a>
+        </li>
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			style="margin-top: 28px;">My Profile</a>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	
+		<% } else{ %>		
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/login" style="margin-top: 28px;">Login</a></li>	
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/register" style="margin-top: 28px;">Register</a></li>	
+		<% } %>
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/conversations" style="margin-top: 28px;">Conversations</a></li>	
+		<li class="nav-item" routerLinkActive="active">
+			<a href="/about.jsp" style="margin-top: 28px;">About</a></li>	
+		<% if(request.getSession().getAttribute("user") != null){ %>
+			<li class="nav-item" routerLinkActive="active">
+				<a href="/logout" style="margin-top: 28px;">Logout</a></li>
+		<% } %>		
+	</ul>
+    <div>
   </nav>
 
   <div class="container">
-      <h1>CodeU Chat App</h1>
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
-
+    
+      <h1 style="font-size: 18px; color: #F78888">
+      Join us for Lovelacers.git tour!
+      <br />
+      </h1>
       <ul>
-        <li><a href="/login">Login</a> to get started.</li>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-        <li>You can <a href="/testdata">load test data</a> to fill the site with
-            example data.</li>
+	  	<% if(request.getSession().getAttribute("user") == null){ %>
+      <li> <a href="/register">Register</a> with unique username, email, and password!</li>
+      <li> <a href="/login">Login</a> with unique username, email, and password!</li>
+      <% } %>
+        <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
+      <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
+      <li> Check out other user's profile page and email them!</li>
+      <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
       </ul>
   </div>
 </body>
