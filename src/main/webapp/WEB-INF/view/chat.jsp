@@ -62,7 +62,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <span class="navbar-toggler-icon"></span>
     </button>
 	<% if(request.getSession().getAttribute("user") != null){ %>
-		<a class="navbar-brand hello" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
+		<a class="navbar-brand hello" style="font-size: 33px; color: #003300">
 		Hello <%= request.getSession().getAttribute("user") %>!</a>
 	<% } %>		
 	<div class="collapse navbar-collapse text-center" id="navbar">
@@ -71,7 +71,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
           <a id="navTitle" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
-			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
 			style="margin-top: 28px;">My Profile</a>		
 			<li class="nav-item" routerLinkActive="active">
 				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	

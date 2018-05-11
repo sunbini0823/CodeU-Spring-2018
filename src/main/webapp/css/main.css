@@ -59,6 +59,8 @@ nav a:hover {
 }
 #navTitle {
   font-size: 36px;
+  font-family: OCR A Std, monospace;
+  margin-top: 20px;
 }
 
 
