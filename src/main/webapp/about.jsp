@@ -179,12 +179,7 @@
       }
 
     </script>
-    <h1 style="font-size: 15px; color: white">
-      Lovelacers.git is a chat app for computer science major college students to use! The theme of the chat app is similar to the default terminal color scheme: black and green.
-      The users are able to join any conversation and click the name of other users to go to their profile page and email them directly if they want to.
-      This requires users to sign up with an email. Each user has their own profile and they are able to change the profile picture, about message, and add languages they are proficient in.
-      This feature allows users to connect to each other easily to ask questions or share knowledge. Lastly, there is an activity feed where users can see what other users are doing in the app.
-      </h1>
+
     </div>
   </div>
 </body>
