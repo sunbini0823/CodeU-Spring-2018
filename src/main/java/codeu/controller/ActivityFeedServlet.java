@@ -92,7 +92,11 @@ public class ActivityFeedServlet extends HttpServlet {
 
     List<String> conversationActivity = new ArrayList<String>();
     List<Conversation> conversationList = conversationStore.getRecentConversations();
-    if (conversationList != null) {
+    
+    if (conversationList.isEmpty()) {
+    	conversationActivity.add("No new conversation in the past day!");
+    }
+    else {
     	for (Conversation conversation : conversationList) {
 	      LocalDateTime datetime = LocalDateTime.ofInstant(conversation.getCreationTime(), ZoneId.of("America/Los_Angeles"));
 	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
@@ -100,11 +104,16 @@ public class ActivityFeedServlet extends HttpServlet {
 	      User creator = userStore.getUser(conversation.getOwnerId());
 	      conversationActivity.add(time + creator.getName() + " created a new conversation: " + conversation.getTitle());
 	    }
-    }   
+    }
+    
 
     List<String> messageActivity = new ArrayList<String>();
     List<Message> messageList = messageStore.getRecentMessages();
-    if(messageList != null) {
+    
+    if(messageList.isEmpty()) {
+    	messageActivity.add("No message sent in the past day!");
+    }
+    else {
     	for (Message message : messageList) {
 	      LocalDateTime datetime = LocalDateTime.ofInstant(message.getCreationTime(), ZoneId.of("America/Los_Angeles"));
 	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
@@ -119,16 +128,20 @@ public class ActivityFeedServlet extends HttpServlet {
 
     List<String> userActivity = new ArrayList<String>();
     List<User> userList = userStore.getRecentUsers();
-    
-    if(userList != null) {
-    	for (User user : userList) {
-	      LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
-	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
 
-	      userActivity.add(time + user.getName() + " joined!");
-	    }
+    if(userList.isEmpty()) {
+    	userActivity.add("No user joined in the past day!");
+    }
+    else {
+    	for (User user : userList) {
+  	      LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
+  	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
+
+  	      userActivity.add(time + user.getName() + " joined!");
+  	    }
     }
     
+
     request.setAttribute("conversationActivity", conversationActivity);
     request.setAttribute("messageActivity", messageActivity);
     request.setAttribute("userActivity", userActivity);
