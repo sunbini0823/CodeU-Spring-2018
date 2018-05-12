@@ -41,10 +41,10 @@
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/">Lovelacers.git</a>
+          <a id="navTitle" style="font-family: 'Lobster', Georgia, Times, serif;" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
-			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
 			style="margin-top: 28px;">My Profile</a>		
 			<li class="nav-item" routerLinkActive="active">
 				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	

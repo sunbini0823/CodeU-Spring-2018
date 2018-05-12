@@ -87,10 +87,10 @@
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/" style="margin-top:24px;">Lovelacers.git</a>
+          <a id="navTitle" href="/" style="margin-top:24px; font-family: 'Lobster', Georgia, Times, serif;">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
-			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
 			style="margin-top: 28px;">My Profile</a>		
 			<li class="nav-item" routerLinkActive="active">
 				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	
@@ -179,7 +179,8 @@
       }
 
     </script>
-    <h1 style="font-size: 15px; color: white">
+
+      <h1 style="font-size: 15px; color: white">
       Lovelacers.git is a chat app for computer science major college students to use! The theme of the chat app is similar to the default terminal color scheme: black and green.
       The users are able to join any conversation and click the name of other users to go to their profile page and email them directly if they want to.
       This requires users to sign up with an email. Each user has their own profile and they are able to change the profile picture, about message, and add languages they are proficient in.

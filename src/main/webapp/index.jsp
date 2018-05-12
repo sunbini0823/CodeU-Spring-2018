@@ -38,10 +38,10 @@
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/">Lovelacers.git</a>
+          <a id="navTitle" style="font-family: 'Lobster', Georgia, Times, serif;" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
-			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=tsenguunanujin" 
+			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
 			style="margin-top: 28px;">My Profile</a>		
 			<li class="nav-item" routerLinkActive="active">
 				<a href="/activityfeed" style="margin-top: 28px;">Activity Feed</a></li>	
@@ -65,17 +65,17 @@
 
   <div class="container">
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
-    
       <h1 style="font-size: 18px; color: #F78888">
       Join us for Lovelacers.git tour!
       <br />
       </h1>
       <ul>
 	  	<% if(request.getSession().getAttribute("user") == null){ %>
-      <li> <a href="/register">Register</a> with unique username, email, and password!</li>
-      <li> <a href="/login">Login</a> with unique username, email, and password!</li>
+        <li> <a href="/register">Register</a> with unique username, email, and password!</li>
+        <li> <a href="/login">Login</a> with unique username, email, and password!</li>
       <% } %>
-        <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
+
+      <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
       <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
       <li> Check out other user's profile page and email them!</li>
       <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
