@@ -92,37 +92,61 @@ public class ActivityFeedServlet extends HttpServlet {
 
     List<String> conversationActivity = new ArrayList<String>();
     List<Conversation> conversationList = conversationStore.getRecentConversations();
-
-    for (Conversation conversation : conversationList) {
-      LocalDateTime datetime = LocalDateTime.ofInstant(conversation.getCreationTime(), ZoneId.of("America/Los_Angeles"));
-      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
-
-      User creator = userStore.getUser(conversation.getOwnerId());
-      conversationActivity.add(time + creator.getName() + " created a new conversation: " + conversation.getTitle());
+    
+    if (conversationList.isEmpty()) {
+    	conversationActivity.add("No new conversation in the past day!");
     }
+    else {
+    	for (Conversation conversation : conversationList) {
+	      LocalDateTime datetime = LocalDateTime.ofInstant(conversation.getCreationTime(), ZoneId.of("America/Los_Angeles"));
+	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
+
+	      User creator = userStore.getUser(conversation.getOwnerId());
+	      String userlink = "<a href=\"/myprofile?profile_id=" + creator.getName() + "\">" + creator.getName() + "</a>";
+	      String convlink = "<a href=\"/chat/" + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
+	      conversationActivity.add(time + userlink + " created a new conversation: " + convlink);
+	    }
+    }
+    
+    
 
     List<String> messageActivity = new ArrayList<String>();
     List<Message> messageList = messageStore.getRecentMessages();
-
-    for (Message message : messageList) {
-      LocalDateTime datetime = LocalDateTime.ofInstant(message.getCreationTime(), ZoneId.of("America/Los_Angeles"));
-      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
-
-      User creator = userStore.getUser(message.getAuthorId());
-      Conversation conversation = conversationStore.getConversationWithUUID(message.getConversationId());
-
-      messageActivity.add(time + creator.getName() + " sent a message in " + conversation.getTitle() + ": \"" + message.getContent() + "\"");
+    
+    if(messageList.isEmpty()) {
+    	messageActivity.add("No message sent in the past day!");
     }
+    else {
+    	for (Message message : messageList) {
+	      LocalDateTime datetime = LocalDateTime.ofInstant(message.getCreationTime(), ZoneId.of("America/Los_Angeles"));
+	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
+
+	      User creator = userStore.getUser(message.getAuthorId());
+	      String userlink = "<a href=\"/myprofile?profile_id=" + creator.getName() + "\">" + creator.getName() + "</a>";
+	      
+	      Conversation conversation = conversationStore.getConversationWithUUID(message.getConversationId());
+	      String convlink = "<a href=\"/chat/" + conversation.getTitle() + "\">" + conversation.getTitle() + "</a>";
+
+	      messageActivity.add(time + userlink + " said in " + convlink + ": \"" + message.getContent() + "\"");
+	    }
+    }
+    
 
     List<String> userActivity = new ArrayList<String>();
     List<User> userList = userStore.getRecentUsers();
 
-    for (User user : userList) {
-      LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
-      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
-
-      userActivity.add(time + user.getName() + " joined!");
+    if(userList.isEmpty()) {
+    	userActivity.add("No user joined in the past day!");
     }
+    else {
+    	for (User user : userList) {
+  	      LocalDateTime datetime = LocalDateTime.ofInstant(user.getCreationTime(), ZoneId.of("America/Los_Angeles"));
+  	      String time = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss ").format(datetime);
+  	      String userlink = "<a href=\"/myprofile?profile_id=" + user.getName() + "\">" + user.getName() + "</a>";
+  	      userActivity.add(time + userlink + " joined!");
+  	    }
+    }
+    
 
     request.setAttribute("conversationActivity", conversationActivity);
     request.setAttribute("messageActivity", messageActivity);

@@ -63,6 +63,8 @@
 
   <div class="container">
 	<h1>Activity Feed</h1>
+	<hr style="border-top: 1px solid white;">
+	
 	<h3>Conversation Activity</h3>
 	<%
 	List<String> conversationActivity = (List<String>) request.getAttribute("conversationActivity");
@@ -75,7 +77,8 @@
 	<%
 	  }
 	%>
-	  </ul>	 
+	  </ul>	
+	  <br> 
 	 <h3>Message Activity</h3>
 	<%
 	List<String> messageActivity = (List<String>) request.getAttribute("messageActivity");
@@ -89,7 +92,7 @@
 	  }
 	%>
 	  </ul>
-
+	<br>
 	<h3>User Activity</h3>
 	<%
 	List<String> userActivity = (List<String>) request.getAttribute("userActivity");
