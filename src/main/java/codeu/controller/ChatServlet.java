@@ -14,22 +14,25 @@
 
 package codeu.controller;
 
+import java.io.IOException;
+import java.time.Instant;
+import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.jsoup.Jsoup;
+import org.jsoup.safety.Whitelist;
+
 import codeu.model.data.Conversation;
 import codeu.model.data.Message;
 import codeu.model.data.User;
 import codeu.model.store.basic.ConversationStore;
 import codeu.model.store.basic.MessageStore;
 import codeu.model.store.basic.UserStore;
-import java.io.IOException;
-import java.time.Instant;
-import java.util.List;
-import java.util.UUID;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.jsoup.Jsoup;
-import org.jsoup.safety.Whitelist;
 
 /** Servlet class responsible for the chat page. */
 public class ChatServlet extends HttpServlet {
@@ -139,16 +142,25 @@ public class ChatServlet extends HttpServlet {
     }
 
     String messageContent = request.getParameter("message");
+    String codeContent = request.getParameter("code");
+    String content;
+    
+    if (messageContent.length() > 0) {
+    	content = Jsoup.clean(messageContent, Whitelist.none());
+    }
+    else {
+    	content = "<div style=\"background-color: #F5F5F5\">" + codeContent + "</div>";
+    }
 
     // this removes any HTML from the message content
-    String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
+    //String cleanedMessageContent = Jsoup.clean(messageContent, Whitelist.none());
 
     Message message =
         new Message(
             UUID.randomUUID(),
             conversation.getId(),
             user.getId(),
-            cleanedMessageContent,
+            content,
             Instant.now());
 
     messageStore.addMessage(message);

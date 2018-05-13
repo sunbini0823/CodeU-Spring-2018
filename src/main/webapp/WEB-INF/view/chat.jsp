@@ -32,6 +32,9 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+   
   <style>
     #chat {
       background-color: white;
@@ -117,16 +120,68 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
     <hr/>
 
     <% if (request.getSession().getAttribute("user") != null) { %>
-    <form action="/chat/<%= conversation.getTitle() %>" method="POST">
-        <input type="text" name="message" class="form-control">
+    
+    
+    <button class="btn btn-success" onclick="toText()" id="txtbtn" style="display: none; margin-bottom: 20px;">txt</button>
+    <button class="btn btn-success" onclick="toCode()" id="codebtn" style="margin-bottom: 20px;">&lt;/&gt;</button>
+    
+    <form action="/chat/<%= conversation.getTitle() %>" method="POST">   
+    	<div id="code" style="display:none;">
+    		<input type="hidden" name="code" class="form-control" id="codemsg">
+        	<div id="editor">
+        	</div>
+    	</div>
+        
+        <div id="text">
+        	<input type="text" name="message" class="form-control" id="txtmsg">
+        </div>
+		
         <br/>
         <button type="submit" class="btn btn-success">Send</button>
     </form>
+    
     <% } else { %>
       <p><a href="/login">Login</a> to send a message.</p>
     <% } %>
-
+	
+	
     <hr/>
+
+	<script>
+	  var quill = new Quill('#editor', {
+		modules: {
+			toolbar: false
+		},	    
+	    theme: 'snow'
+	  });
+	  
+	  quill.formatLine(0, quill.getLength(), { 'code-block': true });
+	  
+	  var form = document.querySelector('form');
+	  form.onsubmit = function() {
+	    var myEditor = document.querySelector('#editor');
+	    var html = myEditor.children[0].innerHTML;
+	    var input = document.getElementById("codemsg");
+	    input.value = html;
+	    return true;
+	  };
+	
+	  function toCode() {
+		  document.getElementById("code").style.display = "block";
+		  document.getElementById("text").style.display = "none";
+		  document.getElementById("txtbtn").style.display = "block";
+		  document.getElementById("codebtn").style.display = "none";
+		  document.getElementById("txtmsg").value = "";
+	  }
+	  
+	  function toText() {
+		  document.getElementById("text").style.display = "block";
+		  document.getElementById("code").style.display = "none";
+		  document.getElementById("codebtn").style.display = "block";
+		  document.getElementById("txtbtn").style.display = "none";
+		  document.getElementById("codemsg").value = "";
+	  }
+	</script>
 
   </div>
 
