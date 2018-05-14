@@ -80,7 +80,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 	<% if(request.getSession().getAttribute("user") != null){ %>
-		<a class="navbar-brand" style="font-size: 33px; color: #003300">
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
 		Hello <%= request.getSession().getAttribute("user") %>!</a>
 	<% } %>		
 	<div class="collapse navbar-collapse text-center" id="navbar">
