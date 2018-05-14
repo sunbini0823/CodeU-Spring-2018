@@ -26,6 +26,7 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
 <html>
 <head>
   <title><%= conversation.getTitle() %></title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400i|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -65,13 +66,13 @@ List<Message> messages = (List<Message>) request.getAttribute("messages");
       <span class="navbar-toggler-icon"></span>
     </button>
 	<% if(request.getSession().getAttribute("user") != null){ %>
-		<a class="navbar-brand hello" style="font-size: 33px; color: #003300">
+		<a class="navbar-brand hello" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
 		Hello <%= request.getSession().getAttribute("user") %>!</a>
 	<% } %>		
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/">Lovelacers.git</a>
+          <a id="navTitle" style="font-family: 'Lobster', Georgia, Times, serif;" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
 			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 

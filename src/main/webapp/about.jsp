@@ -17,7 +17,6 @@
 <html>
 <head>
   <title>CodeU Chat App</title>
-  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400i|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
@@ -87,7 +86,7 @@
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/" style="margin-top:24px;">Lovelacers.git</a>
+          <a id="navTitle" href="/" style="margin-top:24px; font-family: 'Lobster', Georgia, Times, serif;">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
 			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
@@ -179,6 +178,14 @@
       }
 
     </script>
+
+      <h1 style="font-size: 15px; color: white">
+      Lovelacers.git is a chat app for computer science major college students to use! The theme of the chat app is similar to the default terminal color scheme: black and green.
+      The users are able to join any conversation and click the name of other users to go to their profile page and email them directly if they want to.
+      This requires users to sign up with an email. Each user has their own profile and they are able to change the profile picture, about message, and add languages they are proficient in.
+      Users can also send code blocks in the chats for a smoother code sharing experience.
+      These features allow users to connect to each other easily to ask questions or share knowledge. Lastly, there is an activity feed where users can see what other users are doing in the app.
+      </h1>
 
     </div>
   </div>

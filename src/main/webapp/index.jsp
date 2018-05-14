@@ -32,13 +32,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 	<% if(request.getSession().getAttribute("user") != null){ %>
-		<a class="navbar-brand" style="font-size: 33px; color: #003300">
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
 		Hello <%= request.getSession().getAttribute("user") %>!</a>
 	<% } %>		
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/">Lovelacers.git</a>
+          <a id="navTitle" style="font-family: 'Lobster', Georgia, Times, serif;" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
 			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
@@ -66,16 +66,21 @@
   <div class="container">
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
 
+      <h1 style="font-size: 18px; color: #F78888">
+      Join us for Lovelacers.git tour!
+      <br />
+      </h1>
       <ul>
 	  	<% if(request.getSession().getAttribute("user") == null){ %>
-			<li><a href="/login">Login</a> to get started.</li>
-		<% } %>
-        <li>Go to the <a href="/conversations">conversations</a> page to
-            create or join a conversation.</li>
-        <li>View the <a href="/about.jsp">about</a> page to learn more about the
-            project.</li>
-        <!--<li>You can <a href="/testdata">load test data</a> to fill the site with
-            example data.</li> -->
+        <li> <a href="/register">Register</a> with unique username, email, and password!</li>
+        <li> <a href="/login">Login</a> with unique username, email, and password!</li>
+      <% } %>
+
+      <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
+      <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
+      <li> Check out other user's profile page and email them!</li>
+      <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
+
       </ul>
   </div>
 </body>

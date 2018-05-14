@@ -17,6 +17,7 @@
 <html>
 <head>
  <title> User's Profile</title>
+ <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400i|Cabin" rel="stylesheet">
  <link rel="stylesheet" href="/css/main.css">
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
@@ -94,13 +95,13 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 	<% if(request.getSession().getAttribute("user") != null){ %>
-		<a class="navbar-brand" style="font-size: 33px; color: #003300">
+		<a class="navbar-brand" style="font-family: 'Lobster', Georgia, Times, serif; font-size: 33px; color: #003300">
 		Hello <%= request.getSession().getAttribute("user") %>!</a>
 	<% } %>		
 	<div class="collapse navbar-collapse text-center" id="navbar">
 	<ul class="navbar-nav text-left">
 		<li class="nav-item" routerLinkActive="active">
-          <a id="navTitle" href="/">Lovelacers.git</a>
+          <a id="navTitle" style="font-family: 'Lobster', Georgia, Times, serif;" href="/">Lovelacers.git</a>
         </li>
 		<% if(request.getSession().getAttribute("user") != null){ %>
 			<li class="nav-item" routerLinkActive="active"><a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %> " 
