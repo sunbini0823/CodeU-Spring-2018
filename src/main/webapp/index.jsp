@@ -65,6 +65,7 @@
 
   <div class="container">
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
+
       <h1 style="font-size: 18px; color: #F78888">
       Join us for Lovelacers.git tour!
       <br />
@@ -79,6 +80,7 @@
       <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
       <li> Check out other user's profile page and email them!</li>
       <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
+
       </ul>
   </div>
 </body>

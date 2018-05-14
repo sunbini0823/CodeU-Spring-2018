@@ -16,6 +16,7 @@
 <html>
 <head>
   <title>Activity Feed</title>
+  <link href="https://fonts.googleapis.com/css?family=Lobster|Lobster+Two:400i|Cabin" rel="stylesheet">
   <link rel="stylesheet" href="/css/main.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -63,6 +64,8 @@
 
   <div class="container">
 	<h1>Activity Feed</h1>
+	<hr style="border-top: 1px solid white;">
+	
 	<h3>Conversation Activity</h3>
 	<%
 	List<String> conversationActivity = (List<String>) request.getAttribute("conversationActivity");
@@ -75,7 +78,8 @@
 	<%
 	  }
 	%>
-	  </ul>	 
+	  </ul>	
+	  <br> 
 	 <h3>Message Activity</h3>
 	<%
 	List<String> messageActivity = (List<String>) request.getAttribute("messageActivity");
@@ -89,7 +93,7 @@
 	  }
 	%>
 	  </ul>
-
+	<br>
 	<h3>User Activity</h3>
 	<%
 	List<String> userActivity = (List<String>) request.getAttribute("userActivity");
