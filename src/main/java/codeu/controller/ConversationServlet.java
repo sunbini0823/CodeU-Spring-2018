@@ -107,13 +107,13 @@ public class ConversationServlet extends HttpServlet {
     
     String conversationTitle = request.getParameter("conversationTitle");
     
-    String regex = "[a-zA-Z._!?]+";
+    String regex = "[a-zA-Z0-9._!?+#]+";
     Pattern pattern = Pattern.compile(regex);
 
     Matcher m = pattern.matcher(conversationTitle);
     
     if (!m.matches()) {
-      request.setAttribute("error", "Please enter only letters, numbers, and !?_.");
+      request.setAttribute("error", "Please enter only letters, numbers, and _!?+#.");
       request.getRequestDispatcher("/WEB-INF/view/conversations.jsp").forward(request, response);
       return;
     }
