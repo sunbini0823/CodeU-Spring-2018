@@ -114,7 +114,7 @@ public class ConversationServletTest {
 
     Mockito.verify(mockConversationStore, Mockito.never())
         .addConversation(Mockito.any(Conversation.class));
-    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters, numbers, and !?_.");
+    Mockito.verify(mockRequest).setAttribute("error", "Please enter only letters, numbers, and _!?+#.");
     Mockito.verify(mockRequestDispatcher).forward(mockRequest, mockResponse);
   }
 
