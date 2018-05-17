@@ -67,20 +67,24 @@
       <h2>Welcome to <span style="font-family: 'Lobster', Georgia, Times, serif; font-size: 35px; color: #F78888">Team Lovelacers</span>' Chat App!</h2>
 
       <h1 style="font-size: 18px; color: #F78888">
-      Join us for Lovelacers.git tour!
-      <br />
+        Join us for Lovelacers.git tour!
+        <br />
       </h1>
+      
       <ul>
 	  	<% if(request.getSession().getAttribute("user") == null){ %>
         <li> <a href="/register">Register</a> with unique username, email, and password!</li>
-        <li> <a href="/login">Login</a> with unique username, email, and password!</li>
-      <% } %>
-
-      <li> Go to MyProfile and add profile picture, about message, and coding languages! </li>
-      <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
-      <li> Check out other user's profile page and email them!</li>
-      <li>View the <a href="/about.jsp">about</a> page to learn more about the project.</li>
-
+        <li> <a href="/login">Login</a> with unique username and password!</li>
+        <li> Go to My Profile and add profile picture, about message, and coding languages! </li>
+        <li> Visit Activity Feed page to receive recent updates.</li>
+        <% } else {%>
+        <li> Go to <a href="/myprofile?profile_id=<%= request.getSession().getAttribute("user") %>">My Profile</a> and add profile picture, about message, and coding languages! </li>
+        <li> Visit <a href="/activityfeed">Activity Feed</a> page to receive recent updates.</li>
+        <% } %>
+       
+        <li> Feel free to join or read any <a href="/conversations">conversation</a>! </li>
+        <li> Check out other user's profile page and email them!</li>
+        <li> View the <a href="/about.jsp">about</a> page to learn more about the team and the project.</li>    
       </ul>
   </div>
 </body>
